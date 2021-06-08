@@ -1,0 +1,129 @@
+#wheel {
+	justify-content: center;
+	align-items: center;
+}
+
+.wheel-component {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.btn {
+	padding: 10px 45px 10px 45px;
+	color: #DFE6E9;
+	border-radius: 16px;
+	background: linear-gradient(136.19deg, #26DE81 0%, #05C46B 100%);
+	font-size: 1.5rem;
+	cursor: pointer;
+	user-select: none;
+	text-decoration: none;
+	border: none;
+}
+
+.spinBtn {
+	background: linear-gradient(136.19deg, #26DE81 0%, #05C46B 100%);
+}
+
+.resetBtn {
+	background: linear-gradient(136.19deg, #FF416C 0%, #FF4B2B 100%);
+}
+
+/* Responsive Width Elements */
+
+@media screen and (min-width: 3500px) {
+	#wheelCanvas {
+		width: 1094px;
+	}
+}
+
+@media screen and (max-width: 3250px) {
+	#wheelCanvas {
+		width: 1015px;
+	}
+}
+
+@media screen and (max-width: 3000px) {
+	#wheelCanvas {
+		width: 938px;
+	}
+}
+
+@media screen and (max-width: 2750px) {
+	#wheelCanvas {
+		width: 859px;
+	}
+}
+
+@media screen and (max-width: 2500px) {
+	#wheelCanvas {
+		width: 781px;
+	}
+}
+
+@media screen and (max-width: 2250px) {
+	.wheel-container {
+		height: 703px;
+	}
+}
+
+@media screen and (min-width: 2000px) {
+	#wheelCanvas {
+		width: 625px;
+	}
+}
+
+@media screen and (max-width: 1920px) {
+	#wheelCanvas {
+		width: 600px;
+	}
+}
+
+@media screen and (max-width: 1800px) {
+	#wheelCanvas {
+		width: 562px;
+	}
+}
+
+@media screen and (max-width: 1600px) {
+	#wheelCanvas {
+		width: 500px;
+	}
+}
+
+@media screen and (max-width: 1500px) {
+	#wheelCanvas {
+		width: 468px;
+	}
+}
+
+@media screen and (max-width: 1400px) {
+	#wheelCanvas {
+		width: 420px;
+	}
+}
+
+@media screen and (max-width: 1300px) {
+	#wheelCanvas {
+		width: 406px;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	#wheelCanvas {
+		width: 281px;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	#wheelCanvas {
+		width: 218px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#wheelCanvas {
+		width: 156px;
+	}
+}
