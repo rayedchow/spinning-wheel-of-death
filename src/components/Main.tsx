@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Main.css';
 import colorData from '../colorData.json';
 import Confetti from 'react-dom-confetti';
 import Wheel from './Wheel';
+import { SelectedClassContext } from '../data/Store';
+import { Course } from '../@types/Classroom';
 
 interface mainProps {
 	segments: string[]
@@ -11,6 +13,7 @@ interface mainProps {
 const Main: React.FC<mainProps> = ({ segments }) => {
 
 	const [confetti, startConfetti] = useState(false);
+	const [selectedClass] = useContext(SelectedClassContext);
 
 	const onFinished = (winner: number) => {
 		console.log(segments[winner]);
@@ -34,6 +37,9 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 					/>
 				</div>
 				<div className="container student-container">
+					<div className="heading">
+						{selectedClass.name}
+					</div>
 					<p>Student List</p>
 				</div>
 				<div className="container class-container">

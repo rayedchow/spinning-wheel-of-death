@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Course, Student } from './@types/Classroom';
+import { Course, Student } from '../@types/Classroom';
 
 export const getClassList = async (token: string, callback: (courseList: Course[]) => void) => {
 	axios.get('https://classroom.googleapis.com/v1/courses?courseStates=ACTIVE', {

@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './App.css';
 import Main from './components/Main';
 import GoogleLogin from 'react-google-login';
-import { getSegments } from './Data'
+import { getSegments, getClassList } from './data/GoogleAPI';
+import { SelectedClassContext } from './data/Store';
 
 const clientID = process.env.REACT_APP_CLIENT_ID;
 
 const App: React.FC = () => {
+
+	const [, setSelectedClass] = useContext(SelectedClassContext);
 
 	const [segments, setSegments] = useState<string[]>([]);
 	const [loggedIn, boolLoggedIn] = useState(false);
@@ -15,6 +18,11 @@ const App: React.FC = () => {
 		console.log(res);
 
 		const accessToken = res.tokenObj.access_token;
+
+		getClassList(accessToken, async (classListData) => {
+			// if(classListData[0]) setSelectedClass(classListData[0]);
+			if(classListData[0]) setSelectedClass(classListData[0]);
+		});
 
 		getSegments(accessToken, async (currSegments) => setSegments(currSegments));
 
