@@ -1,35 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Main from './components/Main';
 import GoogleLogin from 'react-google-login';
-import { getClassList, getStudentList } from './Data'
+import { getSegments } from './Data'
 
 const clientID = process.env.REACT_APP_CLIENT_ID;
 
 const App: React.FC = () => {
 
-	const [segments, setSegments] = useState([]);
+	const [segments, setSegments] = useState<string[]>([]);
 	const [loggedIn, boolLoggedIn] = useState(false);
 
 	const onGoogleSuccess = async (res) => {
 		console.log(res);
 
 		const accessToken = res.tokenObj.access_token;
-		const currSegments = [];
 
-		await getClassList(accessToken, classList => {
-			classList.forEach(async (classData) => {
-				await getStudentList(classData.id, accessToken, studentList => {
-					studentList.forEach(student => {
-						currSegments.push(student.profile.name.givenName);
-					});
-				});
-				setSegments(currSegments);
-			});
-		});
+		getSegments(accessToken, async (currSegments) => setSegments(currSegments));
 
 		boolLoggedIn(true);
 	}
+
+	useEffect(() => {}, [segments]);
 
 	return (
 		<>

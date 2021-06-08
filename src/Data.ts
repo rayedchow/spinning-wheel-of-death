@@ -20,3 +20,25 @@ export const getStudentList = async (classId: string, token: string, callback: (
 		callback(studentListData.data.students);
 	});
 }
+
+export const getSegments = async (token: string, callback: (currSegments: string[]) => void) => {
+	let currSegments = [];
+
+	await getClassList(token, async (classList) => {
+
+		let classIndex = 0;
+
+		classList.forEach(async (classData) => {
+			await getStudentList(classData.id, token, studentList => {
+				studentList.forEach(student => {
+					currSegments.push(student.profile.name.givenName);
+				});
+
+				classIndex += 1;
+				if(classIndex === classList.length) {
+					callback(currSegments);
+				}
+			});
+		});
+	});
+}
