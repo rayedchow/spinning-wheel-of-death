@@ -18,7 +18,6 @@ const App: React.FC = () => {
 		const currSegments = [];
 
 		await getClassList(accessToken, classList => {
-			console.log(classList);
 			classList.forEach(async (classData) => {
 				await getStudentList(classData.id, accessToken, studentList => {
 					studentList.forEach(student => {
