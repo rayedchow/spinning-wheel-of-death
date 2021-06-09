@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Wheel.css';
-import colorData from '../colorData.json';
+import colorData from '../data/colorData.json';
 
 interface wheelProps {
 	onFinished: (winningItem: number) => void,

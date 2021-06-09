@@ -4,8 +4,9 @@ import Main from './components/Main';
 import GoogleLogin from 'react-google-login';
 import { getSegments, getClassList, getStudentList } from './data/GoogleAPI';
 import { SelectedClassContext, SelectedClassStudentsContext } from './data/Store';
+import clientIDJSON from './data/clientID.json';
 
-const clientID = process.env.REACT_APP_CLIENT_ID;
+const clientID = clientIDJSON.clientID;
 
 const App: React.FC = () => {
 

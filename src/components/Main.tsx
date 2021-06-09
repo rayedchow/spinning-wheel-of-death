@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Main.css';
-import colorData from '../colorData.json';
+import colorData from '../data/colorData.json';
 import Confetti from 'react-dom-confetti';
 import Wheel from './Wheel';
 import { SelectedClassContext, SelectedClassStudentsContext } from '../data/Store';
