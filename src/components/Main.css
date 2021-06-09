@@ -36,7 +36,9 @@
 }
 
 .studentCards {
+	max-width: 650px;
 	display: flex;
+	flex-wrap: wrap;
 }
 
 .container-heading {
@@ -94,6 +96,7 @@
 	}
 
 	.student-container {
+		max-width: 650px;
 		width: 650px;
 	}
 

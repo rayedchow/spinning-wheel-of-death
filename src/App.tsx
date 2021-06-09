@@ -25,7 +25,7 @@ const App: React.FC = () => {
 			// if(classListData[0]) setSelectedClass(classListData[0]);
 			if(classListData[1]) { 
 				setSelectedClass(classListData[1]);
-				getStudentList(classListData[1].id, accessToken, async (studentListData) => setSelectedClassStudents(studentListData));
+				// getStudentList(classListData[1].id, accessToken, async (studentListData) => setSelectedClassStudents(studentListData));
 			}
 		});
 

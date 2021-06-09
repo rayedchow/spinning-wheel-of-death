@@ -8,7 +8,140 @@ const initialSelectedClass: Course = {
 	courseState: 'ACTIVE'
 };
 
-const initialSelectedClassStudents: Student[] = [];
+const initialSelectedClassStudents: Student[] = [
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 1'
+			}
+		}
+	},
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 2'
+			}
+		}
+	},
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 3'
+			}
+		}
+	},
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 4'
+			}
+		}
+	},
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 5'
+			}
+		}
+	},
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 6'
+			}
+		}
+	},
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 5'
+			}
+		}
+	},
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 6'
+			}
+		}
+	},
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 5'
+			}
+		}
+	},
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 6'
+			}
+		}
+	},
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 5'
+			}
+		}
+	},
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 6'
+			}
+		}
+	}
+];
 
 export const SelectedClassContext = React.createContext([]);
 export const SelectedClassStudentsContext = React.createContext([]);
