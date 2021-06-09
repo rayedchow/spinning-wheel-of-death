@@ -45,9 +45,48 @@
 	text-align: center;
 	color: #26DE81;
 	font-size: 28px;
-	margin-top: 20px;
+	/* margin-top: 20px; */
 	text-overflow: ellipsis;
 	overflow: hidden;
+}
+
+.btn {
+	padding: 10px 45px 10px 45px;
+	color: #DFE6E9;
+	border-radius: 16px;
+	background: linear-gradient(136.19deg, #26DE81 0%, #05C46B 100%);
+	font-size: 1.5rem;
+	cursor: pointer;
+	text-decoration: none;
+	border: none;
+}
+
+.successGradient {
+	background: linear-gradient(136.19deg, #26DE81 0%, #05C46B 100%);
+}
+
+.failGradient {
+	background: linear-gradient(136.19deg, #FF416C 0%, #FF4B2B 100%);
+}
+
+.listControls .btn {
+	padding: 8px 30px 8px 30px;
+}
+
+.listControls {
+	margin-top: 25px;
+}
+
+.pagination {
+	color: #26DE81;
+	display: inline;
+}
+
+.student-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 /* Responsive Width Elements */

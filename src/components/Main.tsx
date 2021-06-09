@@ -7,6 +7,7 @@ import { SelectedClassContext, SelectedClassStudentsContext } from '../data/Stor
 import { Course, Student } from '../@types/Classroom';
 import StudentCard from './StudentCard';
 import { getStudentName } from '../data/GoogleAPI';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 interface mainProps {
 	segments: string[]
@@ -15,6 +16,7 @@ interface mainProps {
 const Main: React.FC<mainProps> = ({ segments }) => {
 
 	const [confetti, startConfetti] = useState(false);
+	const [page, setPage] = useState(1);
 	const [selectedClass] = useContext(SelectedClassContext);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
 
@@ -47,6 +49,18 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 						{selectedClassStudents.map((selectedClassStudent: Student) => (
 							<StudentCard name={getStudentName(selectedClassStudent.profile.name.fullName)} />
 						))}
+					</div>
+					<div className="listControls">
+						<button className="btn successGradient">
+							Add
+						</button>
+						<div className="pagination">
+							<FaAngleLeft className="pagIcon" />
+							<FaAngleRight className="pagIcon" />
+						</div>
+						<button className="btn failGradient">
+							Reset
+						</button>
 					</div>
 				</div>
 				<div className="container class-container">

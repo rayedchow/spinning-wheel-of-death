@@ -192,11 +192,11 @@ const Wheel: React.FC<wheelProps> = ({ list, onFinished }) => {
 						/>
 					</div>
 					{spinning ? (
-						<button className="btn resetBtn" onClick={reset}>
+						<button className="btn failGradient" onClick={reset}>
 							Reset
 						</button>
 					) : (
-						<button className="btn spinBtn" onClick={spin}>
+						<button className="btn successGradient" onClick={spin}>
 							Spin
 						</button>
 					)}

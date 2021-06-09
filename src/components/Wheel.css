@@ -10,25 +10,6 @@
 	flex-direction: column;
 }
 
-.btn {
-	padding: 10px 45px 10px 45px;
-	color: #DFE6E9;
-	border-radius: 16px;
-	background: linear-gradient(136.19deg, #26DE81 0%, #05C46B 100%);
-	font-size: 1.5rem;
-	cursor: pointer;
-	text-decoration: none;
-	border: none;
-}
-
-.spinBtn {
-	background: linear-gradient(136.19deg, #26DE81 0%, #05C46B 100%);
-}
-
-.resetBtn {
-	background: linear-gradient(136.19deg, #FF416C 0%, #FF4B2B 100%);
-}
-
 /* Responsive Width Elements */
 
 @media screen and (min-width: 3500px) {
