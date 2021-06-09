@@ -46,7 +46,9 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 					))}
 				</div>
 				<div className="container class-container">
-					<p>Class List</p>
+					<div className="container-heading">
+						Classes
+					</div>
 				</div>
 				{/* <div className="confetti">
 					<div id="c1">

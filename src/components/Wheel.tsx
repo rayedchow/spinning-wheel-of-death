@@ -91,8 +91,10 @@ const Wheel: React.FC<wheelProps> = ({ list, onFinished }) => {
 		ctx.arc(x, y, radius, startAngle, endAngle, false);
 		ctx.lineWidth = radius * 2;
 		ctx.strokeStyle = colorData[Math.floor(Math.random() * colorData.length)];
-	
-		ctx.font = "17px Montserrat";
+		
+		if(text.length > 12) text = text.substring(0, 8) + '...';
+
+		ctx.font = `17px Montserrat`;
 		ctx.fillStyle = "white";
 		ctx.stroke();
 	
@@ -111,7 +113,7 @@ const Wheel: React.FC<wheelProps> = ({ list, onFinished }) => {
 		}
 
 		ctx.rotate(rotation);
-		ctx.fillText(text + `${index}`, -ctx.measureText(text).width / 2, 0);
+		ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
 		// console.log(`INDEX ${index}: ${baseSize + Math.cos(angle - arc / 2) * textRadius}`)
 		ctx.restore();
 	}
