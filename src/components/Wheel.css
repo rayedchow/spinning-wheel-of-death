@@ -17,7 +17,6 @@
 	background: linear-gradient(136.19deg, #26DE81 0%, #05C46B 100%);
 	font-size: 1.5rem;
 	cursor: pointer;
-	user-select: none;
 	text-decoration: none;
 	border: none;
 }

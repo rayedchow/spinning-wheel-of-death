@@ -1,0 +1,23 @@
+.studentCard {
+	margin: 15px 0px 0px 15px;
+	background-color: #DFE6E9;
+	padding: 10px 20px 10px 20px;
+	display: inline-flex;
+	flex-direction: row;
+	border-radius: 8px;
+	max-width: 150px;
+	min-width: 150px;
+}
+
+.studentName {
+	color: #222F3E;
+}
+
+.studentSettings {
+	margin-left: 10px;
+}
+
+.studentRem {
+	color: #E74C3C;
+	margin-top: 1px;
+}

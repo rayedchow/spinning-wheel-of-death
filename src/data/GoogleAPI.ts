@@ -42,3 +42,11 @@ export const getSegments = async (token: string, callback: (currSegments: string
 		});
 	});
 }
+
+export const getStudentName = (fullName: string): string => {
+
+	const splitName = fullName.split(' ');
+	const studentName = (splitName.length > 1) ? `${splitName[0]} ${splitName[1].substr(0, 1)}` : fullName;
+
+	return studentName;
+}

@@ -4,7 +4,9 @@ import colorData from '../data/colorData.json';
 import Confetti from 'react-dom-confetti';
 import Wheel from './Wheel';
 import { SelectedClassContext, SelectedClassStudentsContext } from '../data/Store';
-import { Course } from '../@types/Classroom';
+import { Course, Student } from '../@types/Classroom';
+import StudentCard from './StudentCard';
+import { getStudentName } from '../data/GoogleAPI';
 
 interface mainProps {
 	segments: string[]
@@ -41,9 +43,11 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 					<div className="container-heading">
 						{selectedClass.name}
 					</div>
-					{selectedClassStudents.map(selectedClassStudent => (
-						<p>{selectedClassStudent.profile.fullName}</p>
-					))}
+					<div className="studentCards">
+						{selectedClassStudents.map((selectedClassStudent: Student) => (
+							<StudentCard name={getStudentName(selectedClassStudent.profile.name.fullName)} />
+						))}
+					</div>
 				</div>
 				<div className="container class-container">
 					<div className="container-heading">

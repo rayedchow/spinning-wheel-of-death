@@ -23,14 +23,14 @@ const App: React.FC = () => {
 
 		getClassList(accessToken, async (classListData) => {
 			// if(classListData[0]) setSelectedClass(classListData[0]);
-			if(classListData[0]) { 
-				setSelectedClass(classListData[0]);
-				getStudentList(classListData[0].id, accessToken, async (studentListData) => setSelectedClassStudents(studentListData));
+			if(classListData[1]) { 
+				setSelectedClass(classListData[1]);
+				getStudentList(classListData[1].id, accessToken, async (studentListData) => setSelectedClassStudents(studentListData));
 			}
 		});
 
-		// getSegments(accessToken, async (currSegments) => setSegments(currSegments));
-		setSegments(['Student 1', 'Student 2', 'Student 3']);
+		getSegments(accessToken, async (currSegments) => setSegments(currSegments));
+		// setSegments(['Student 1', 'Student 2', 'Student 3']);
 
 		boolLoggedIn(true);
 	}

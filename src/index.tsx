@@ -5,10 +5,10 @@ import App from './App';
 import Store from './data/Store';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Store>
-      <App />
-    </Store>
-  </React.StrictMode>,
-  document.getElementById('root')
+	<React.StrictMode>
+		<Store>
+			<App />
+		</Store>
+	</React.StrictMode>,
+	document.getElementById('root')
 );

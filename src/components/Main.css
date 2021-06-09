@@ -35,6 +35,19 @@
 	height: 600px;
 }
 
+.studentCards {
+	display: flex;
+}
+
+.container-heading {
+	text-align: center;
+	color: #26DE81;
+	font-size: 28px;
+	margin-top: 20px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
 /* Responsive Width Elements */
 
 @media screen and (min-width: 2000px) {
@@ -42,6 +55,13 @@
 		margin-left: 150px;
 		width: 625px;
 	}
+	.container {
+		margin-right: 104px;
+	}
+
+	/* .student-container {
+		
+	} */
 }
 
 @media screen and (max-width: 1920px) {
@@ -55,20 +75,11 @@
 	}
 
 	.student-container {
-		width: 450px;
+		width: 600px;
 	}
 
 	.class-container {
 		width: 400px;
-	}
-
-	.container-heading {
-		text-align: center;
-		color: #26DE81;
-		font-size: 28px;
-		margin-top: 20px;
-		text-overflow: ellipsis;
-		overflow: hidden;
 	}
 }
 
@@ -76,6 +87,18 @@
 	.wheel-container {
 		margin-left: 80px;
 		width: 406px;
+	}
+
+	.container {
+		margin-right: 80px;
+	}
+
+	.student-container {
+		width: 650px;
+	}
+
+	.class-container {
+		width: 400px;
 	}
 }
 
