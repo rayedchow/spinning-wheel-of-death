@@ -3,7 +3,7 @@ import './Main.css';
 import colorData from '../colorData.json';
 import Confetti from 'react-dom-confetti';
 import Wheel from './Wheel';
-import { SelectedClassContext } from '../data/Store';
+import { SelectedClassContext, SelectedClassStudentsContext } from '../data/Store';
 import { Course } from '../@types/Classroom';
 
 interface mainProps {
@@ -14,6 +14,7 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 
 	const [confetti, startConfetti] = useState(false);
 	const [selectedClass] = useContext(SelectedClassContext);
+	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
 
 	const onFinished = (winner: number) => {
 		console.log(segments[winner]);
@@ -37,10 +38,12 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 					/>
 				</div>
 				<div className="container student-container">
-					<div className="heading">
+					<div className="container-heading">
 						{selectedClass.name}
 					</div>
-					<p>Student List</p>
+					{selectedClassStudents.map(selectedClassStudent => (
+						<p>{selectedClassStudent.profile.fullName}</p>
+					))}
 				</div>
 				<div className="container class-container">
 					<p>Class List</p>
