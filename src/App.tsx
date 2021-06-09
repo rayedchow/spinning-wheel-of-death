@@ -30,7 +30,6 @@ const App: React.FC = () => {
 		});
 
 		getSegments(accessToken, async (currSegments) => setSegments(currSegments));
-		// setSegments(['Student 1', 'Student 2', 'Student 3']);
 
 		boolLoggedIn(true);
 	}

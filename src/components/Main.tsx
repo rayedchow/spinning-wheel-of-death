@@ -16,7 +16,8 @@ interface mainProps {
 const Main: React.FC<mainProps> = ({ segments }) => {
 
 	const [confetti, startConfetti] = useState(false);
-	const [page, setPage] = useState(1);
+	const [page, setPage] = useState(0);
+	const [currentPageStudents, setCurrentPageStudents] = useState([]);
 	const [selectedClass] = useContext(SelectedClassContext);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
 
@@ -30,7 +31,17 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 		colorData.push(colorData[Math.floor(Math.random()*colorData.length)]);
 	}
 
-	useEffect(() => {}, [segments]);
+	// setCurrentPageStudents();
+
+	useEffect(() => {
+		const deltaPageCurrents = [];
+		let index = page*12;
+		while(deltaPageCurrents.length < selectedClassStudents.length-(page*12)) {
+			deltaPageCurrents.push(selectedClassStudents[index]);
+			index++;
+		}
+		setCurrentPageStudents(deltaPageCurrents);
+	}, [segments, page]);
 
 	return (
 		<>

@@ -31,7 +31,7 @@ export const getSegments = async (token: string, callback: (currSegments: string
 		classList.forEach(async (classData) => {
 			await getStudentList(classData.id, token, studentList => {
 				studentList.forEach(student => {
-					currSegments.push(student.profile.name.givenName);
+					currSegments.push(getStudentName(student.profile.name.fullName));
 				});
 
 				classIndex += 1;
