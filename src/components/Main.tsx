@@ -33,6 +33,14 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 
 	// setCurrentPageStudents();
 
+	const nextPage = () => {
+		if(selectedClassStudents.length-((page+1)*12) > 0) setPage(page+1);
+	}
+
+	const prevPage = () => {
+		if(page > 0) setPage(page-1);
+	}
+
 	useEffect(() => {
 		const deltaPageCurrents = [];
 		let index = page*12;
@@ -68,8 +76,8 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 							Add
 						</button>
 						<div className="pagination">
-							<FaAngleLeft className="pagIcon" />
-							<FaAngleRight className="pagIcon" />
+							<FaAngleLeft className="pagIcon" onClick={prevPage} />
+							<FaAngleRight className="pagIcon" onClick={nextPage} />
 						</div>
 						<button className="btn failGradient">
 							Reset
