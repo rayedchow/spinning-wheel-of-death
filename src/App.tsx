@@ -10,12 +10,12 @@ const clientID = clientIDJSON.clientID;
 
 const App: React.FC = () => {
 
-	const [, setSelectedClass] = useContext(SelectedClassContext);
+	const [selectedClass, setSelectedClass] = useContext(SelectedClassContext);
 	const [, setSelectedClassStudents] = useContext(SelectedClassStudentsContext);
 	const [, setClassList] = useContext(ClassListContext);
 
 	const [segments, setSegments] = useState<string[]>([]);
-	const [loggedIn, boolLoggedIn] = useState(false);
+	const [loggedIn, boolLoggedIn] = useState(null);
 
 	const onGoogleSuccess = async (res) => {
 		// console.log(res);
@@ -33,10 +33,16 @@ const App: React.FC = () => {
 
 		getSegments(accessToken, async (currSegments) => setSegments(currSegments));
 
-		boolLoggedIn(true);
+		boolLoggedIn(res);
 	}
 
 	useEffect(() => {}, [segments]);
+
+	useEffect(() => {
+		if(loggedIn) {
+			console.log('EVENT: SELECTED_CLASS_CHANGE');
+		}
+	}, [selectedClass]);
 
 	return (
 		<>

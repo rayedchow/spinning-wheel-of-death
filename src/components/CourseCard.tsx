@@ -9,10 +9,15 @@ interface CourseProps {
 
 const CourseCard: React.FC<CourseProps> = ({ course }) => {
 
-	const [selectedClass] = useContext(SelectedClassContext);
+	const [selectedClass, setSelectedClass] = useContext(SelectedClassContext);
+
+	const updateSelectedClass = () => setSelectedClass(course);
 
 	return (
-		<div className={`courseCard${(selectedClass == course) ? ' selectedCourse' : ''}`}>
+		<div 
+			className={`courseCard${(selectedClass == course) ? ' selectedCourse' : ''}`}
+			onClick={updateSelectedClass}
+		>
 			<div className="courseName">
 				{course.name}
 			</div>
