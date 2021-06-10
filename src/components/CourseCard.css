@@ -1,0 +1,20 @@
+.courseCard {
+	margin-bottom: 20px;
+	background-color: #DFE6E9;
+	padding: 10px 20px 10px 20px;
+	border-radius: 8px;
+	max-width: 150px;
+	min-width: 150px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+
+.courseName {
+	text-align: center;
+	color: #222F3E;
+}
+
+.selectedCourse {
+	background-color: #26DE81;
+}
