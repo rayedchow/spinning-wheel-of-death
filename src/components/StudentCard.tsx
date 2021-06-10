@@ -9,15 +9,9 @@ interface StudentProps {
 const StudentCard: React.FC<StudentProps> = ({ name }) => {
 	return (
 		<div className="studentCard">
-			{name.length < 10 ? (
-				<div className="studentName">
-					{name}
-				</div>
-			) : (
-				<div className="studentName">
-					{name.substring(0, 8) + '...'}
-				</div>
-			)}
+			<div className="studentName">
+				{name}
+			</div>
 			<div className="studentSettings">
 				<FaRegTimesCircle className="studentRem" />
 			</div>

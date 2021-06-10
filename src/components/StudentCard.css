@@ -7,10 +7,15 @@
 	border-radius: 8px;
 	max-width: 150px;
 	min-width: 150px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .studentName {
 	color: #222F3E;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .studentSettings {
