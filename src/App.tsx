@@ -3,7 +3,7 @@ import './App.css';
 import Main from './components/Main';
 import GoogleLogin from 'react-google-login';
 import { getSegments, getClassList, getStudentList } from './data/GoogleAPI';
-import { SelectedClassContext, SelectedClassStudentsContext } from './data/Store';
+import { ClassListContext, SelectedClassContext, SelectedClassStudentsContext } from './data/Store';
 import clientIDJSON from './data/clientID.json';
 
 const clientID = clientIDJSON.clientID;
@@ -12,6 +12,7 @@ const App: React.FC = () => {
 
 	const [, setSelectedClass] = useContext(SelectedClassContext);
 	const [, setSelectedClassStudents] = useContext(SelectedClassStudentsContext);
+	const [, setClassList] = useContext(ClassListContext);
 
 	const [segments, setSegments] = useState<string[]>([]);
 	const [loggedIn, boolLoggedIn] = useState(false);
@@ -23,10 +24,11 @@ const App: React.FC = () => {
 
 		getClassList(accessToken, async (classListData) => {
 			// if(classListData[0]) setSelectedClass(classListData[0]);
-			if(classListData[1]) { 
-				setSelectedClass(classListData[1]);
-				getStudentList(classListData[1].id, accessToken, async (studentListData) => setSelectedClassStudents(studentListData));
+			if(classListData[0]) { 
+				setSelectedClass(classListData[0]);
+				getStudentList(classListData[0].id, accessToken, async (studentListData) => setSelectedClassStudents(studentListData));
 			}
+			setClassList(classListData);
 		});
 
 		getSegments(accessToken, async (currSegments) => setSegments(currSegments));
