@@ -105,7 +105,6 @@ const Wheel: React.FC<wheelProps> = ({ list, onFinished }) => {
 		);
 		
 		let rotation = angle - arc / 2 + Math.PI / 2;
-		console.log(`INDEX ${index}: ${rotation}`)
 		if(baseSize + Math.cos(angle - arc / 2) * textRadius < 240) {
 			rotation += 1.8;
 		} else {
@@ -114,7 +113,6 @@ const Wheel: React.FC<wheelProps> = ({ list, onFinished }) => {
 
 		ctx.rotate(rotation);
 		ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
-		// console.log(`INDEX ${index}: ${baseSize + Math.cos(angle - arc / 2) * textRadius}`)
 		ctx.restore();
 	}
   

@@ -36,8 +36,9 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 	useEffect(() => {
 		const deltaPageCurrents = [];
 		let index = page*12;
-		while(deltaPageCurrents.length < selectedClassStudents.length-(page*12)) {
+		while(index < ((selectedClassStudents.length-(page*12) > 12) ? 12 : selectedClassStudents.length-(page*12) % 12)) {
 			deltaPageCurrents.push(selectedClassStudents[index]);
+			console.log(deltaPageCurrents);
 			index++;
 		}
 		setCurrentPageStudents(deltaPageCurrents);
@@ -57,8 +58,9 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 						{selectedClass.name}
 					</div>
 					<div className="studentCards">
-						{selectedClassStudents.map((selectedClassStudent: Student) => (
-							<StudentCard name={getStudentName(selectedClassStudent.profile.name.fullName)} />
+						{currentPageStudents.map((selectedClassStudent: Student) => (
+							// <StudentCard name={getStudentName(selectedClassStudent.profile.name.fullName)} />
+							<StudentCard name={selectedClassStudent.profile.name.fullName} />
 						))}
 					</div>
 					<div className="listControls">

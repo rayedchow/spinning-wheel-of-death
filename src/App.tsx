@@ -17,7 +17,7 @@ const App: React.FC = () => {
 	const [loggedIn, boolLoggedIn] = useState(false);
 
 	const onGoogleSuccess = async (res) => {
-		console.log(res);
+		// console.log(res);
 
 		const accessToken = res.tokenObj.access_token;
 

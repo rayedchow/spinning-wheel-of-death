@@ -82,7 +82,7 @@ const initialSelectedClassStudents: Student[] = [
 			id: '',
 			name: {
 				givenName: '',
-				fullName: 'Student 5'
+				fullName: 'Student 7'
 			}
 		}
 	},
@@ -93,7 +93,7 @@ const initialSelectedClassStudents: Student[] = [
 			id: '',
 			name: {
 				givenName: '',
-				fullName: 'Student 6'
+				fullName: 'Student 8'
 			}
 		}
 	},
@@ -104,7 +104,7 @@ const initialSelectedClassStudents: Student[] = [
 			id: '',
 			name: {
 				givenName: '',
-				fullName: 'Student 5'
+				fullName: 'Student 9'
 			}
 		}
 	},
@@ -115,7 +115,7 @@ const initialSelectedClassStudents: Student[] = [
 			id: '',
 			name: {
 				givenName: '',
-				fullName: 'Student 6'
+				fullName: 'Student 10'
 			}
 		}
 	},
@@ -126,7 +126,7 @@ const initialSelectedClassStudents: Student[] = [
 			id: '',
 			name: {
 				givenName: '',
-				fullName: 'Student 5'
+				fullName: 'Student 11'
 			}
 		}
 	},
@@ -137,7 +137,29 @@ const initialSelectedClassStudents: Student[] = [
 			id: '',
 			name: {
 				givenName: '',
-				fullName: 'Student 6'
+				fullName: 'Student 12'
+			}
+		}
+	},
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 13'
+			}
+		}
+	},
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 14'
 			}
 		}
 	}
