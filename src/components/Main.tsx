@@ -3,11 +3,12 @@ import './Main.css';
 import colorData from '../data/colorData.json';
 import Confetti from 'react-dom-confetti';
 import Wheel from './Wheel';
-import { SelectedClassContext, SelectedClassStudentsContext } from '../data/Store';
+import { ClassListContext, SelectedClassContext, SelectedClassStudentsContext } from '../data/Store';
 import { Course, Student } from '../@types/Classroom';
 import StudentCard from './StudentCard';
 import { getStudentName } from '../data/GoogleAPI';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import CourseCard from './CourseCard';
 
 interface mainProps {
 	segments: string[]
@@ -20,6 +21,7 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 	const [currentPageStudents, setCurrentPageStudents] = useState([]);
 	const [selectedClass] = useContext(SelectedClassContext);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
+	const [classList] = useContext(ClassListContext);
 
 	const onFinished = (winner: number) => {
 		console.log(segments[winner]);
@@ -87,6 +89,11 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 				<div className="container class-container">
 					<div className="container-heading">
 						Classes
+					</div>
+					<div className="courseCards">
+						{classList.map((course: Course) => (
+							<CourseCard course={course} />
+						))}
 					</div>
 				</div>
 				{/* <div className="confetti">
