@@ -18,29 +18,26 @@ const App: React.FC = () => {
 	const [loggedIn, boolLoggedIn] = useState(null);
 
 	const onGoogleSuccess = async (res) => {
-		// console.log(res);
+		console.log(res);
 
 		const accessToken = res.tokenObj.access_token;
 
 		getClassList(accessToken, async (classListData) => {
-			// if(classListData[0]) setSelectedClass(classListData[0]);
-			if(classListData[0]) { 
-				setSelectedClass(classListData[0]);
-				getStudentList(classListData[0].id, accessToken, async (studentListData) => setSelectedClassStudents(studentListData));
-			}
+			if(classListData[0]) setSelectedClass(classListData[0]);
 			setClassList(classListData);
 		});
 
-		getSegments(accessToken, async (currSegments) => setSegments(currSegments));
-
-		boolLoggedIn(res);
+		boolLoggedIn(res.tokenObj.access_token);
 	}
 
 	useEffect(() => {}, [segments]);
 
 	useEffect(() => {
 		if(loggedIn) {
-			console.log('EVENT: SELECTED_CLASS_CHANGE');
+			getStudentList(selectedClass.id, loggedIn, async (studentListData) => {
+				setSelectedClassStudents(studentListData);
+				getSegments(loggedIn, selectedClass, async (currSegments) => setSegments(currSegments));
+			});
 		}
 	}, [selectedClass]);
 
