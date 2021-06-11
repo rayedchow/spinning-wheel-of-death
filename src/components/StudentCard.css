@@ -1,14 +1,13 @@
 .studentCard {
-	margin-bottom: 15px;
+	margin: 10px 0px 0px 10px;
 	background-color: #DFE6E9;
 	padding: 10px 20px 10px 20px;
-	display: inline-flex;
+	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
 	border-radius: 8px;
 	max-width: 150px;
 	min-width: 150px;
-	overflow: hidden;
-	text-overflow: ellipsis;
 }
 
 .studentName {
@@ -16,10 +15,6 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-}
-
-.studentSettings {
-	margin-left: 10px;
 }
 
 .studentRem {

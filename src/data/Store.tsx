@@ -10,7 +10,98 @@ const initialSelectedClass: Course = {
 
 const initialSelectedClassStudents: Student[] = [];
 
-const initialClassList: Course[] = [];
+const initialClassList: Course[] = [
+	{
+		id: '',
+		name: 'Course 123456789101112',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	},
+	{
+		id: '',
+		name: 'Course 2',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	},
+	{
+		id: '',
+		name: 'Course 3',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	},
+	{
+		id: '',
+		name: 'Course 4',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	},
+	{
+		id: '',
+		name: 'Course 5',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	},
+	{
+		id: '',
+		name: 'Course 6',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	},
+	{
+		id: '',
+		name: 'Course 7',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	},
+	{
+		id: '',
+		name: 'Course 8',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	},
+	{
+		id: '',
+		name: 'Course 9',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	},
+	{
+		id: '',
+		name: 'Course 10',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	},
+	{
+		id: '',
+		name: 'Course 11',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	},
+	{
+		id: '',
+		name: 'Course 12',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	},
+	{
+		id: '',
+		name: 'Course 13',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	},
+	{
+		id: '',
+		name: 'Course 14',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	},
+	{
+		id: '',
+		name: 'Course 15',
+		ownerId: '',
+		courseState: 'ACTIVE'
+	}
+];
 
 export const SelectedClassContext = React.createContext([]);
 export const SelectedClassStudentsContext = React.createContext([]);

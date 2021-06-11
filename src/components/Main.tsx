@@ -17,8 +17,10 @@ interface mainProps {
 const Main: React.FC<mainProps> = ({ segments }) => {
 
 	const [confetti, startConfetti] = useState(false);
-	const [page, setPage] = useState(0);
+	const [studentPage, setStudentPage] = useState(0);
+	const [classPage, setClassPage] = useState(0);
 	const [currentPageStudents, setCurrentPageStudents] = useState([]);
+	const [currentPageClasses, setCurrentPageClasses] = useState([]);
 	const [selectedClass] = useContext(SelectedClassContext);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
 	const [classList] = useContext(ClassListContext);
@@ -33,26 +35,40 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 		colorData.push(colorData[Math.floor(Math.random()*colorData.length)]);
 	}
 
-	// setCurrentPageStudents();
-
-	const nextPage = () => {
-		if(selectedClassStudents.length-((page+1)*12) > 0) setPage(page+1);
+	const nextStudentPage = () => {
+		if(selectedClassStudents.length-((studentPage+1)*12) > 0) setStudentPage(studentPage+1);
 	}
 
-	const prevPage = () => {
-		if(page > 0) setPage(page-1);
+	const prevStudentPage = () => {
+		if(studentPage > 0) setStudentPage(studentPage-1);
+	}
+
+	const nextClassPage = () => {
+		if(classList.length-((classPage+1)*8) > 0) setClassPage(classPage+1);
+	}
+
+	const prevClassPage = () => {
+		if(classPage > 0) setClassPage(classPage-1);
 	}
 
 	useEffect(() => {
-		const deltaPageCurrents = [];
-		let index = page*12;
-		while(index < ((selectedClassStudents.length-(page*12) > 12) ? 12 : selectedClassStudents.length-(page*12) % 12)) {
-			deltaPageCurrents.push(selectedClassStudents[index]);
-			console.log(deltaPageCurrents);
-			index++;
+		const deltaCurrentPageStudents = [];
+		let studentIndex = studentPage*12;
+		while(studentIndex < ((selectedClassStudents.length-(studentPage*12) > 12) ? 12 : selectedClassStudents.length-(studentPage*12) % 12)) {
+			deltaCurrentPageStudents.push(selectedClassStudents[studentIndex]);
+			studentIndex++;
 		}
-		setCurrentPageStudents(deltaPageCurrents);
-	}, [segments, page]);
+		setCurrentPageStudents(deltaCurrentPageStudents);
+
+		const deltaCurrentPageClasses = [];
+		let classIndex = classPage*8;
+		while(classIndex < ((classList.length-(classPage*8) > 8) ? 8 : classList.length-(classPage*8) % 8)) {
+			deltaCurrentPageClasses.push(classList[classIndex]);
+			classIndex++;
+		}
+		setCurrentPageClasses(deltaCurrentPageClasses);
+
+	}, [segments, studentPage, classPage]);
 
 	return (
 		<>
@@ -69,8 +85,7 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 					</div>
 					<div className="studentCards">
 						{currentPageStudents.map((selectedClassStudent: Student) => (
-							// <StudentCard name={getStudentName(selectedClassStudent.profile.name.fullName)} />
-							<StudentCard name={selectedClassStudent.profile.name.fullName} />
+							<StudentCard name={getStudentName(selectedClassStudent.profile.name.fullName)} />
 						))}
 					</div>
 					<div className="listControls">
@@ -78,8 +93,8 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 							Add
 						</button>
 						<div className="pagination">
-							<FaAngleLeft className="pagIcon" onClick={prevPage} />
-							<FaAngleRight className="pagIcon" onClick={nextPage} />
+							<FaAngleLeft className="pagIcon" onClick={prevStudentPage} />
+							<FaAngleRight className="pagIcon" onClick={nextStudentPage} />
 						</div>
 						<button className="btn failGradient">
 							Reset
@@ -91,9 +106,15 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 						Classes
 					</div>
 					<div className="courseCards">
-						{classList.map((course: Course) => (
+						{currentPageClasses.map((course: Course) => (
 							<CourseCard course={course} />
 						))}
+					</div>
+					<div className="listControls">
+						<div className="pagination">
+							<FaAngleLeft className="pagIcon" onClick={prevClassPage} />
+							<FaAngleRight className="pagIcon" onClick={nextClassPage} />
+						</div>
 					</div>
 				</div>
 				{/* <div className="confetti">

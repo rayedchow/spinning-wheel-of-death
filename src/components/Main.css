@@ -37,11 +37,20 @@
 	height: 600px;
 }
 
+.class-container {
+	justify-content: space-around;
+}
+
+.courseCards {
+	display: flex;
+	flex-direction: column;
+}
+
 .studentCards {
 	max-width: 650px;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
+	justify-content: center;
 }
 
 .container-heading {
@@ -73,10 +82,6 @@
 
 .listControls .btn {
 	padding: 8px 30px 8px 30px;
-}
-
-.listControls {
-	margin-top: 25px;
 }
 
 .pagination {
