@@ -24,7 +24,7 @@ const App: React.FC = () => {
 
 		getClassList(accessToken, async (classListData) => {
 			if(classListData[0]) setSelectedClass(classListData[0]);
-			// setClassList(classListData);
+			setClassList(classListData);
 		});
 
 		boolLoggedIn(res.tokenObj.access_token);
