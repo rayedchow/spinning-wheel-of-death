@@ -82,11 +82,12 @@
 
 .listControls .btn {
 	padding: 8px 30px 8px 30px;
+	margin-bottom: 10px;
 }
 
 .listControls {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }

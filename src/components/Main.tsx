@@ -79,16 +79,13 @@ const Main: React.FC = () => {
 						))}
 					</div>
 					<div className="listControls">
-						<button className="btn successGradient">
-							Add
+						<button className="btn failGradient">
+							Reset
 						</button>
 						<div className="pagination">
 							<FaAngleLeft className="pagIcon" onClick={prevStudentPage} />
 							<FaAngleRight className="pagIcon" onClick={nextStudentPage} />
 						</div>
-						<button className="btn failGradient">
-							Reset
-						</button>
 					</div>
 				</div>
 				<div className="container class-container">
