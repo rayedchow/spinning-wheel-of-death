@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import './App.css';
 import Main from './components/Main';
 import GoogleLogin from 'react-google-login';
-import { getSegments, getClassList, getStudentList } from './data/GoogleAPI';
+import { getClassList, getStudentList } from './data/GoogleAPI';
 import { ClassListContext, SelectedClassContext, SelectedClassStudentsContext } from './data/Store';
 import clientIDJSON from './data/clientID.json';
 
@@ -13,8 +13,6 @@ const App: React.FC = () => {
 	const [selectedClass, setSelectedClass] = useContext(SelectedClassContext);
 	const [, setSelectedClassStudents] = useContext(SelectedClassStudentsContext);
 	const [, setClassList] = useContext(ClassListContext);
-
-	const [segments, setSegments] = useState<string[]>([]);
 	const [loggedIn, boolLoggedIn] = useState(null);
 
 	const onGoogleSuccess = async (res) => {
@@ -30,13 +28,10 @@ const App: React.FC = () => {
 		boolLoggedIn(res.tokenObj.access_token);
 	}
 
-	useEffect(() => {}, [segments]);
-
 	useEffect(() => {
 		if(loggedIn) {
 			getStudentList(selectedClass.id, loggedIn, async (studentListData) => {
 				setSelectedClassStudents(studentListData);
-				getSegments(loggedIn, selectedClass, async (currSegments) => setSegments(currSegments));
 			});
 		}
 	}, [selectedClass]);
@@ -57,7 +52,7 @@ const App: React.FC = () => {
 			}
 			
 			{loggedIn &&
-				<Main segments={segments} />
+				<Main />
 			}
 		</>
 	);

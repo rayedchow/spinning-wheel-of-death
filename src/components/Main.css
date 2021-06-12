@@ -84,6 +84,13 @@
 	padding: 8px 30px 8px 30px;
 }
 
+.listControls {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
 .pagination {
 	color: #26DE81;
 	display: inline;

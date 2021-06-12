@@ -1,21 +1,18 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import './Wheel.css';
 import colorData from '../data/colorData.json';
+import { SelectedClassStudentsContext } from '../data/Store';
+import { getStudentName } from '../data/GoogleAPI';
 
 interface wheelProps {
-	onFinished: (winningItem: number) => void,
-	list: string[]
+	onFinished: (winningItem: number) => void
 }
 
 let colors = [];
 
-const Wheel: React.FC<wheelProps> = ({ list, onFinished }) => {
+const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 
 	const radius = 75;
-
-	while(list.length > colors.length) {
-		colors.push(colorData[Math.floor(Math.random() * colorData.length)]);
-	}
 
 	const [rotate, setRotate] = useState(0);
 	const [easeOut, setEaseOut] = useState(0);
@@ -26,6 +23,11 @@ const Wheel: React.FC<wheelProps> = ({ list, onFinished }) => {
 	const [, setResult] = useState(null);
 	const [spinning, setSpinning] = useState(false);
 	const [spinCount, setSpinCount] = useState(0);
+	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
+
+	while(selectedClassStudents.length > colors.length) {
+		colors.push(colorData[Math.floor(Math.random() * colorData.length)]);
+	}
 
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -34,7 +36,7 @@ const Wheel: React.FC<wheelProps> = ({ list, onFinished }) => {
 		if(!canvasRef.current) return;
 
 		// determine number/size of sectors that need to created
-		let numOptions = list.length;
+		let numOptions = selectedClassStudents.length;
 		let arcSize = (2 * Math.PI) / numOptions;
 		setAngle(arcSize);
 	
@@ -44,7 +46,7 @@ const Wheel: React.FC<wheelProps> = ({ list, onFinished }) => {
 		// dynamically generate sectors from state list
 		let angle = 0;
 		for (let i = 0; i < numOptions; i++) {
-			let text = list[i];
+			let text = getStudentName(selectedClassStudents[i].profile.name.fullName);
 			renderSector(i + 1, text, angle, arcSize);
 			angle += arcSize;
 		}
@@ -147,7 +149,7 @@ const Wheel: React.FC<wheelProps> = ({ list, onFinished }) => {
 		if (count >= 0) {
 			spinResult = count;
 		} else {
-			spinResult = list.length + count;
+			spinResult = selectedClassStudents.length + count;
 		}
 
 		setSpinCount(spinCount+1);
@@ -170,7 +172,7 @@ const Wheel: React.FC<wheelProps> = ({ list, onFinished }) => {
 			renderWheel();
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [spinCount, list]);
+	}, [spinCount, selectedClassStudents]);
 
 	return (
 			<>

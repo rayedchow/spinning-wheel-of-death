@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Main.css';
-import colorData from '../data/colorData.json';
 import Confetti from 'react-dom-confetti';
 import Wheel from './Wheel';
 import { ClassListContext, SelectedClassContext, SelectedClassStudentsContext } from '../data/Store';
@@ -10,11 +9,7 @@ import { getStudentName } from '../data/GoogleAPI';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import CourseCard from './CourseCard';
 
-interface mainProps {
-	segments: string[]
-}
-
-const Main: React.FC<mainProps> = ({ segments }) => {
+const Main: React.FC = () => {
 
 	const [confetti, startConfetti] = useState(false);
 	const [studentPage, setStudentPage] = useState(0);
@@ -26,13 +21,9 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 	const [classList] = useContext(ClassListContext);
 
 	const onFinished = (winner: number) => {
-		console.log(segments[winner]);
+		console.log(selectedClassStudents[winner]);
 		startConfetti(true);
 		startConfetti(false);
-	}
-
-	while(colorData.length < segments.length) {
-		colorData.push(colorData[Math.floor(Math.random()*colorData.length)]);
 	}
 
 	const nextStudentPage = () => {
@@ -68,14 +59,13 @@ const Main: React.FC<mainProps> = ({ segments }) => {
 		}
 		setCurrentPageClasses(deltaCurrentPageClasses);
 
-	}, [segments, studentPage, classPage]);
+	}, [selectedClassStudents, studentPage, classPage]);
 
 	return (
 		<>
 			<div className="main-container">
 				<div className="container wheel-container">
 					<Wheel
-						list={segments} 
 						onFinished={onFinished}
 					/>
 				</div>
