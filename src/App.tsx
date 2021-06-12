@@ -30,9 +30,9 @@ const App: React.FC = () => {
 
 	useEffect(() => {
 		if(loggedIn) {
-			// getStudentList(selectedClass.id, loggedIn, async (studentListData) => {
-			// 	setSelectedClassStudents(studentListData);
-			// });
+			getStudentList(selectedClass.id, loggedIn, async (studentListData) => {
+				setSelectedClassStudents(studentListData);
+			});
 		}
 	}, [selectedClass]);
 
