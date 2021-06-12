@@ -10,6 +10,10 @@
 	min-width: 150px;
 }
 
+.studentRemoved {
+	background-color: #C8D6E5;
+}
+
 .studentName {
 	color: #222F3E;
 	white-space: nowrap;
@@ -17,7 +21,18 @@
 	text-overflow: ellipsis;
 }
 
+.studentRemoved .studentName {
+	color: #576574;
+}
+
 .studentRem {
 	color: #E74C3C;
+}
+
+.studentAdd {
+	color: #26DE81;
+}
+
+.studentSettings {
 	margin-top: 1px;
 }

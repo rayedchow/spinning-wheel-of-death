@@ -12,6 +12,7 @@ export interface Student {
 	courseId: string
 	userId: string
 	profile: StudentProfile
+	removed?: boolean
 }
 
 interface StudentProfile {

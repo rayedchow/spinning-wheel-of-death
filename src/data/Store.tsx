@@ -8,7 +8,20 @@ const initialSelectedClass: Course = {
 	courseState: 'ACTIVE'
 };
 
-const initialSelectedClassStudents: Student[] = [];
+const initialSelectedClassStudents: Student[] = [
+	{
+		courseId: '',
+		userId: '',
+		profile: {
+			id: '',
+			name: {
+				givenName: '',
+				fullName: 'Student 1'
+			}
+		},
+		removed: true
+	}
+];
 
 const initialClassList: Course[] = [];
 

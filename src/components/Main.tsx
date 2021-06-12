@@ -75,7 +75,7 @@ const Main: React.FC = () => {
 					</div>
 					<div className="studentCards">
 						{currentPageStudents.map((selectedClassStudent: Student) => (
-							<StudentCard name={getStudentName(selectedClassStudent.profile.name.fullName)} />
+							<StudentCard student={selectedClassStudent} />
 						))}
 					</div>
 					<div className="listControls">
