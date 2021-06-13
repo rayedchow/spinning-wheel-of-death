@@ -76,8 +76,16 @@
 	background: linear-gradient(136.19deg, #26DE81 0%, #05C46B 100%);
 }
 
+.successGradient:hover {
+	background: linear-gradient(136.19deg, #05C46B 0%, #26DE81 100%);
+}
+
 .failGradient {
 	background: linear-gradient(136.19deg, #FF416C 0%, #FF4B2B 100%);
+}
+
+.failGradient:hover {
+	background: linear-gradient(136.19deg, #FF4B2B 0%, #FF416C 100%);
 }
 
 .listControls .btn {

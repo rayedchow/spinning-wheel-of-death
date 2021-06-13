@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import './Main.css';
 import Confetti from 'react-dom-confetti';
 import Wheel from './Wheel';
-import { ClassListContext, SelectedClassContext, SelectedClassStudentsContext } from '../data/Store';
+import { ClassListContext, SelectedClassContext, SelectedClassStudentsContext, LocalStorageContext } from '../data/Store';
 import { Course, Student } from '../@types/Classroom';
 import StudentCard from './StudentCard';
-import { getStudentName } from '../data/GoogleAPI';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import CourseCard from './CourseCard';
+import { updateJSON } from '../data/GoogleAPI';
 
 const Main: React.FC = () => {
 
@@ -19,6 +19,7 @@ const Main: React.FC = () => {
 	const [selectedClass] = useContext(SelectedClassContext);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
 	const [classList] = useContext(ClassListContext);
+	const [localStorageJSON, setLocalStorageJSON] = useContext(LocalStorageContext);
 
 	const onFinished = (winner: number) => {
 		console.log(selectedClassStudents[winner]);
@@ -40,6 +41,11 @@ const Main: React.FC = () => {
 
 	const prevClassPage = () => {
 		if(classPage > 0) setClassPage(classPage-1);
+	}
+
+	const resetStudents = () => {
+		setLocalStorageJSON({});
+		localStorage.setItem(selectedClass.id, '{}');
 	}
 
 	useEffect(() => {
@@ -79,7 +85,7 @@ const Main: React.FC = () => {
 						))}
 					</div>
 					<div className="listControls">
-						<button className="btn failGradient">
+						<button className="btn failGradient" onClick={resetStudents}>
 							Reset
 						</button>
 						<div className="pagination">
