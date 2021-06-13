@@ -7,7 +7,6 @@ import { Course, Student } from '../@types/Classroom';
 import StudentCard from './StudentCard';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import CourseCard from './CourseCard';
-import { updateJSON } from '../data/GoogleAPI';
 
 const Main: React.FC = () => {
 
@@ -19,7 +18,7 @@ const Main: React.FC = () => {
 	const [selectedClass] = useContext(SelectedClassContext);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
 	const [classList] = useContext(ClassListContext);
-	const [localStorageJSON, setLocalStorageJSON] = useContext(LocalStorageContext);
+	const [, setLocalStorageJSON] = useContext(LocalStorageContext);
 
 	const onFinished = (winner: number) => {
 		console.log(selectedClassStudents[winner]);

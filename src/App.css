@@ -1,114 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
 * {
 	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
 }
 
 #navbar {
 	background: linear-gradient(90deg, #26DE81 0%, #05C46B 100%);
-	height: 65px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	height: 10vh;
+	width: 100vw;
+	padding-right: 100vw;
 }
 
-/* Responsive Height Elements */
-
-@media screen and (min-height: 3500px) {
-	#navbar {
-		height: 280px;
-	}
-}
-
-@media screen and (max-height: 3250px) {
-	#navbar {
-		height: 260px;
-	}
-}
-
-@media screen and (max-height: 3000px) {
-	#navbar {
-		height: 240px;
-	}
-}
-
-@media screen and (max-height: 2750px) {
-	#navbar {
-		height: 220px;
-	}
-}
-
-@media screen and (max-height: 2500px) {
-	#navbar {
-		height: 200px;
-	}
-}
-
-@media screen and (max-height: 2250px) {
-	#navbar {
-		height: 180px;
-	}
-}
-
-@media screen and (max-height: 2000px) {
-	#navbar {
-		height: 160px;
-	}
-}
-
-@media screen and (max-height: 1800px) {	
-	#navbar {
-		height: 144px;
-	}
-}
-
-@media screen and (max-height: 1600px) {	
-	#navbar {
-		height: 128px;
-	}
-}
-
-@media screen and (max-height: 1500px) {	
-	#navbar {
-		height: 120px;
-	}
-}
-
-@media screen and (max-height: 1400px) {	
-	#navbar {
-		height: 112px;
-	}
-}
-
-@media screen and (max-height: 1200px) {
-	#navbar {
-		height: 96px;
-	}
-}
-
-@media screen and (max-height: 1100px) {	
-	#navbar {
-		height: 88px;
-	}
-}
-
-@media screen and (max-height: 1000px) {
-	#navbar {
-		height: 80px;
-	}
-}
-
-@media screen and (max-height: 900px) {	
-	#navbar {
-		height: 72px;
-	}
-}
-
-@media screen and (max-height: 800px) {	
-	#navbar {
-		height: 64px;
-	}
-}
-
-@media screen and (max-height: 700px) {
-	#navbar {
-		height: 56px;
-	}
+.logo {
+	color: #222F3E;
+	font-weight: 400;
+	cursor: pointer;
+	margin-left: 6vw;
+	font-size: calc((10vh+10vw)/2);
 }

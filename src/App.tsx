@@ -47,6 +47,9 @@ const App: React.FC = () => {
 	return (
 		<>
 			<div id="navbar">
+				<div className="logo">
+					spinningwheelofdeath
+				</div>
 			</div>
 			{!loggedIn && 
 				<GoogleLogin 
