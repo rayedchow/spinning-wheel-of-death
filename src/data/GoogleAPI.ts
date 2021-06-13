@@ -21,6 +21,11 @@ export const getStudentList = async (classId: string, token: string, callback: (
 	});
 }
 
+export const updateJSON = (localStorageJSON, key) => {
+	localStorage.setItem(key, JSON.stringify(localStorageJSON));
+}
+
+
 export const getStudentName = (fullName: string): string => {
 
 	const splitName = fullName.split(' ');

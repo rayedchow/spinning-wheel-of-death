@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import './App.css';
 import Main from './components/Main';
 import GoogleLogin from 'react-google-login';
-import { getClassList, getStudentList } from './data/GoogleAPI';
+import { getClassList, getStudentList, updateJSON } from './data/GoogleAPI';
 import { ClassListContext, LocalStorageContext, SelectedClassContext, SelectedClassStudentsContext } from './data/Store';
 import clientIDJSON from './data/clientID.json';
 
@@ -13,7 +13,7 @@ const App: React.FC = () => {
 	const [selectedClass, setSelectedClass] = useContext(SelectedClassContext);
 	const [, setSelectedClassStudents] = useContext(SelectedClassStudentsContext);
 	const [, setClassList] = useContext(ClassListContext);
-	const [, setLocalStorageJSON] = useContext(LocalStorageContext);
+	const [localStorageJSON, setLocalStorageJSON] = useContext(LocalStorageContext);
 	const [loggedIn, boolLoggedIn] = useState(null);
 
 	const onGoogleSuccess = async (res) => {
@@ -36,8 +36,8 @@ const App: React.FC = () => {
 			});
 
 			if(!localStorage.getItem(selectedClass.id)) {
-				localStorage.setItem(selectedClass.id, '{}');
 				setLocalStorageJSON({});
+				updateJSON(localStorageJSON, selectedClass.id);
 			} else {
 				setLocalStorageJSON(JSON.parse(localStorage.getItem(selectedClass.id)));
 			}
