@@ -21,18 +21,6 @@ export const getStudentList = async (classId: string, token: string, callback: (
 	});
 }
 
-export const getSegments = async (token: string, selectedClass: Course, callback: (currSegments: string[]) => void) => {
-	let currSegments = [];
-
-	await getStudentList(selectedClass.id, token, studentList => {
-		studentList.forEach(student => {
-			currSegments.push(getStudentName(student.profile.name.fullName));
-		});
-
-		callback(currSegments);
-	});
-}
-
 export const getStudentName = (fullName: string): string => {
 
 	const splitName = fullName.split(' ');

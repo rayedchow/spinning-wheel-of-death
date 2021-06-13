@@ -10,19 +10,27 @@ interface StudentProps {
 
 const StudentCard: React.FC<StudentProps> = ({ student }) => {
 
-	const [studentRemoved, setStudentRemoved] = useState(student.removed);
+	const localStorageJSON = JSON.parse(localStorage.getItem(student.courseId));
+	const [studentRemoved, setStudentRemoved] = useState(localStorageJSON[student.userId]);
 
-	const addStudent = () => { 
-		student.removed = false;
+	const addStudent = () => {
+		delete localStorageJSON[student.userId];
+		updateJSON();
 		setStudentRemoved(false);
 	}
 
 	const remStudent = () => {
-		student.removed = true;
+		localStorageJSON[student.userId] = true;
+		updateJSON();
 		setStudentRemoved(true);
 	}
 
-	if(student.removed) {
+	const updateJSON = () => {
+		console.log(localStorageJSON);
+		localStorage.setItem(student.courseId, JSON.stringify(localStorageJSON));
+	}
+
+	if(studentRemoved) {
 		return (
 			<div className="studentCard studentRemoved">
 				<div className="studentName">
