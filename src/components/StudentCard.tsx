@@ -34,7 +34,7 @@ const StudentCard: React.FC<StudentProps> = ({ student }) => {
 
 	useEffect(() => {
 		setStudentRemoved(localStorageJSON[student.userId]);
-	}, [localStorageJSON]);
+	}, [localStorageJSON, student.userId]);
 
 	if(studentRemoved) {
 		return (
