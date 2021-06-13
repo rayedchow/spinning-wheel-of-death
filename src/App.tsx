@@ -33,6 +33,10 @@ const App: React.FC = () => {
 			getStudentList(selectedClass.id, loggedIn, async (studentListData) => {
 				setSelectedClassStudents(studentListData);
 			});
+
+			if(!localStorage.getItem(selectedClass.id)) {
+				localStorage.setItem(selectedClass.id, '[]');
+			}
 		}
 	}, [selectedClass]);
 
