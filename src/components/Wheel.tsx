@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import './Wheel.css';
 import colorData from '../data/colorData.json';
-import { NonRemovedContext, SelectedClassStudentsContext } from '../data/Store';
-import { getStudentName } from '../data/GoogleAPI';
+import { LocalStorageContext, NonRemovedContext, SelectedClassStudentsContext } from '../data/Store';
+import { getStudentName, updateJSON } from '../data/GoogleAPI';
 
 interface wheelProps {
 	onFinished: (winningItem: number) => void
@@ -24,7 +24,8 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 	const [spinning, setSpinning] = useState(false);
 	const [spinCount, setSpinCount] = useState(0);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
-	const [nonRemoved] = useContext(NonRemovedContext);
+	const [nonRemoved, setNonRemoved] = useContext(NonRemovedContext);
+	const [localStorageJSON, setLocalStorageJSON] = useContext(LocalStorageContext);
 
 	while(nonRemoved.length > colors.length) {
 		colors.push(colorData[Math.floor(Math.random() * colorData.length)]);
@@ -125,13 +126,13 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 		let randomSpin = Math.floor(Math.random() * 1000) + 1500;
 
 		setRotate(randomSpin);
-		setEaseOut(8);
+		setEaseOut(4);
 		setSpinning(true);
   
 		// calcalute result after wheel stops spinning
 		setTimeout(() => {
 			getResult(randomSpin);
-		}, 8000);
+		}, 4000);
 	};
   
 	const getResult = spin => {
@@ -161,6 +162,12 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 	};
 
 	const reset = () => {
+		let currJSON = localStorageJSON;
+		currJSON[nonRemoved[result].userId] = true;
+		setLocalStorageJSON(currJSON);
+		updateJSON(localStorageJSON, nonRemoved[result].courseId);
+		setNonRemoved(selectedClassStudents.filter(student => !localStorageJSON[student.userId]));
+
 		// reset wheel and result
 		setRotate(0);
 		setEaseOut(0);

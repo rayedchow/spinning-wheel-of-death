@@ -1,12 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Main.css';
-import Confetti from 'react-dom-confetti';
+import Confetti, { ConfettiConfig } from 'react-dom-confetti';
 import Wheel from './Wheel';
-import { ClassListContext, SelectedClassContext, SelectedClassStudentsContext, LocalStorageContext } from '../data/Store';
+import { ClassListContext, LocalStorageContext, SelectedClassContext, SelectedClassStudentsContext } from '../data/Store';
 import { Course, Student } from '../@types/Classroom';
 import StudentCard from './StudentCard';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import CourseCard from './CourseCard';
+
+const confettiConfig: ConfettiConfig = {
+	spread: 360,
+	duration: 4000,
+	width: `${window.innerWidth * 0.01}px`,
+	height: `${window.innerHeight * 0.01}px`
+}
 
 const Main: React.FC = () => {
 
@@ -67,6 +74,11 @@ const Main: React.FC = () => {
 
 	return (
 		<>
+			<div className="confettiContainer">
+				<div className="confetti">
+					<Confetti active={confetti} config={confettiConfig} />
+				</div>
+			</div>
 			<div className="main-container">
 				<div className="container wheel-container">
 					<Wheel
@@ -106,20 +118,6 @@ const Main: React.FC = () => {
 							<FaAngleLeft className="pagIcon" onClick={prevClassPage} />
 							<FaAngleRight className="pagIcon" onClick={nextClassPage} />
 						</div>
-					</div>
-				</div>
-				<div className="confetti">
-					<div id="c1">
-						<Confetti active={confetti} />
-						<Confetti active={confetti} />
-					</div>
-					<div id="c2">
-						<Confetti active={confetti} />
-						<Confetti active={confetti} />
-					</div>
-					<div id="c3">
-						<Confetti active={confetti} />
-						<Confetti active={confetti} />
 					</div>
 				</div>
 			</div>

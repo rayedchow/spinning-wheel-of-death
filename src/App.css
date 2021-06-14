@@ -22,3 +22,10 @@
 	margin-left: 6vw;
 	font-size: calc((10vh+10vw)/2);
 }
+
+.loginContainer {
+	height: 90vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

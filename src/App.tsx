@@ -51,15 +51,18 @@ const App: React.FC = () => {
 					spinningwheelofdeath
 				</div>
 			</div>
-			{!loggedIn && 
-				<GoogleLogin 
-					clientId={clientID}
-					buttonText="Login"
-					onSuccess={onGoogleSuccess}
-					cookiePolicy="single_host_origin"
-					scope="openid https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.rosters.readonly"
-					isSignedIn={true}
-				/>
+			{!loggedIn &&
+				<div className="loginContainer">
+					<GoogleLogin 
+						clientId={clientID}
+						buttonText="Login"
+						onSuccess={onGoogleSuccess}
+						cookiePolicy="single_host_origin"
+						scope="openid https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.rosters.readonly"
+						isSignedIn={true}
+						className="loginEmbed"
+					/>
+				</div>
 			}
 			
 			{loggedIn &&
