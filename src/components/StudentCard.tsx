@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { FaRegTimesCircle, FaPlus } from 'react-icons/fa';
 import { Student } from '../@types/Classroom';
 import { getStudentName, updateJSON } from '../data/GoogleAPI';
-import { LocalStorageContext } from '../data/Store';
+import { LocalStorageContext, NonRemovedContext, SelectedClassStudentsContext } from '../data/Store';
 import './StudentCard.css';
 
 interface StudentProps {
@@ -11,9 +11,10 @@ interface StudentProps {
 
 const StudentCard: React.FC<StudentProps> = ({ student }) => {
 
-	const [localStorageJSON] = useContext(LocalStorageContext);
-	const [, setLocalStorageJSON] = useContext(LocalStorageContext);
+	const [localStorageJSON, setLocalStorageJSON] = useContext(LocalStorageContext);
 	const [studentRemoved, setStudentRemoved] = useState(localStorageJSON[student.userId]);
+	const [nonRemoved, setNonRemoved] = useContext(NonRemovedContext);
+	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
 
 	const addStudent = () => {
 		let currJSON = localStorageJSON;
@@ -21,6 +22,7 @@ const StudentCard: React.FC<StudentProps> = ({ student }) => {
 		setLocalStorageJSON(currJSON);
 		updateJSON(localStorageJSON, student.courseId);
 		setStudentRemoved(false);
+		setNonRemoved(selectedClassStudents.filter(student => !localStorageJSON[student.userId]));
 	}
 
 	const remStudent = () => {
@@ -29,12 +31,15 @@ const StudentCard: React.FC<StudentProps> = ({ student }) => {
 		setLocalStorageJSON(currJSON);
 		updateJSON(localStorageJSON, student.courseId);
 		setStudentRemoved(true);
+		console.log(nonRemoved);
+		setNonRemoved(selectedClassStudents.filter(student => !localStorageJSON[student.userId]));;
+		console.log(nonRemoved);
 	}
 
 	useEffect(() => {
 		setStudentRemoved(localStorageJSON[student.userId]);
-		console.log('data 2 change');
-	}, [localStorageJSON, student.userId]);
+		setNonRemoved(selectedClassStudents.filter(student => !localStorageJSON[student.userId]));
+	}, [localStorageJSON, student.userId, selectedClassStudents]);
 
 	if(studentRemoved) {
 		return (

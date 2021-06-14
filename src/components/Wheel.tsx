@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import './Wheel.css';
 import colorData from '../data/colorData.json';
-import { SelectedClassStudentsContext } from '../data/Store';
+import { NonRemovedContext, SelectedClassStudentsContext } from '../data/Store';
 import { getStudentName } from '../data/GoogleAPI';
-import { LocalStorageContext } from '../data/Store';
 
 interface wheelProps {
 	onFinished: (winningItem: number) => void
@@ -25,10 +24,9 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 	const [spinning, setSpinning] = useState(false);
 	const [spinCount, setSpinCount] = useState(0);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
-	const [nonRemovedStudents, setNonRemovedStudents] = useState(selectedClassStudents);
-	const [localStorageJSON] = useContext(LocalStorageContext);
+	const [nonRemoved] = useContext(NonRemovedContext);
 
-	while(nonRemovedStudents.length > colors.length) {
+	while(nonRemoved.length > colors.length) {
 		colors.push(colorData[Math.floor(Math.random() * colorData.length)]);
 	}
 
@@ -39,7 +37,7 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 		if(!canvasRef.current) return;
 
 		// determine number/size of sectors that need to created
-		let numOptions = nonRemovedStudents.length;
+		let numOptions = nonRemoved.length;
 		let arcSize = (2 * Math.PI) / numOptions;
 		setAngle(arcSize);
 	
@@ -49,7 +47,7 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 		// dynamically generate sectors from state list
 		let angle = 0;
 		for (let i = 0; i < numOptions; i++) {
-			let text = getStudentName(nonRemovedStudents[i].profile.name.fullName);
+			let text = getStudentName(nonRemoved[i].profile.name.fullName);
 			renderSector(i + 1, text, angle, arcSize);
 			angle += arcSize;
 		}
@@ -152,7 +150,7 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 		if (count >= 0) {
 			spinResult = count;
 		} else {
-			spinResult = nonRemovedStudents.length + count;
+			spinResult = nonRemoved.length + count;
 		}
 
 		setSpinCount(spinCount+1);
@@ -171,22 +169,10 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 	};
 
 	useEffect(() => {
-		if(spinCount === 0) {
-			renderWheel();
-		}
+		console.log('hi');
+		renderWheel();
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [spinCount, selectedClassStudents, nonRemovedStudents]);
-
-	useEffect(() => {
-
-		setNonRemovedStudents(selectedClassStudents.filter(student => !localStorageJSON[student.userId]))
-		
-		console.log(selectedClassStudents.filter(student => !localStorageJSON[student.userId]));
-	}, [localStorageJSON, selectedClassStudents, spinCount]);
-
-	useEffect(() => {
-		console.log('data change');
-	}, [localStorageJSON])
+	}, [selectedClassStudents, nonRemoved]);
 
 	return (
 			<>

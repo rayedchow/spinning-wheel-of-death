@@ -18,15 +18,18 @@ export const SelectedClassContext = React.createContext([]);
 export const SelectedClassStudentsContext = React.createContext([]);
 export const ClassListContext = React.createContext([]);
 export const LocalStorageContext = React.createContext([]);
+export const NonRemovedContext = React.createContext([]);
 
 const Store = ({ children }) => {
 	const [selectedClass, setSelectedClass] = useState<Course>(initialSelectedClass);
 	const [selectedClassStudents, setSelectedClassStudents] = useState<Student[]>(initialSelectedClassStudents);
 	const [classList, setClassList] = useState<Course[]>(initialClassList);
 	const [localStorageJSON, setLocalStorageJSON] = useState(initialLocalStorageJSON);
+	const [nonRemoved, setNonRemoved] = useState<Student[]>([]);
 
 	return (
 		<>
+			<NonRemovedContext.Provider value={[nonRemoved, setNonRemoved]}>
 			<LocalStorageContext.Provider value={[localStorageJSON, setLocalStorageJSON]}>
 				<ClassListContext.Provider value={[classList, setClassList]}>
 					<SelectedClassStudentsContext.Provider value={[selectedClassStudents, setSelectedClassStudents]}>
@@ -36,6 +39,7 @@ const Store = ({ children }) => {
 					</SelectedClassStudentsContext.Provider>
 				</ClassListContext.Provider>
 			</LocalStorageContext.Provider>
+			</NonRemovedContext.Provider>
 		</>
 	);
 }

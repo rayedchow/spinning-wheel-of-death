@@ -18,7 +18,7 @@ const Main: React.FC = () => {
 	const [selectedClass] = useContext(SelectedClassContext);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
 	const [classList] = useContext(ClassListContext);
-	const [, setLocalStorageJSON] = useContext(LocalStorageContext);
+	const [localStorageJSON, setLocalStorageJSON] = useContext(LocalStorageContext);
 
 	const onFinished = (winner: number) => {
 		console.log(selectedClassStudents[winner]);
@@ -65,6 +65,10 @@ const Main: React.FC = () => {
 		setCurrentPageClasses(deltaCurrentPageClasses);
 
 	}, [selectedClassStudents, studentPage, classPage, classList]);
+
+	useEffect(() => {
+		console.log('data change 3');
+	}, [])
 
 	return (
 		<>
