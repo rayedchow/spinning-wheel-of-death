@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Main.css';
-import Confetti from 'react-dom-confetti';
+// import Confetti from 'react-dom-confetti';
 import Wheel from './Wheel';
 import { ClassListContext, SelectedClassContext, SelectedClassStudentsContext, LocalStorageContext } from '../data/Store';
 import { Course, Student } from '../@types/Classroom';
@@ -10,7 +10,7 @@ import CourseCard from './CourseCard';
 
 const Main: React.FC = () => {
 
-	const [confetti, startConfetti] = useState(false);
+	// const [confetti, startConfetti] = useState(false);
 	const [studentPage, setStudentPage] = useState(0);
 	const [classPage, setClassPage] = useState(0);
 	const [currentPageStudents, setCurrentPageStudents] = useState([]);
@@ -18,12 +18,12 @@ const Main: React.FC = () => {
 	const [selectedClass] = useContext(SelectedClassContext);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
 	const [classList] = useContext(ClassListContext);
-	const [localStorageJSON, setLocalStorageJSON] = useContext(LocalStorageContext);
+	const [, setLocalStorageJSON] = useContext(LocalStorageContext);
 
 	const onFinished = (winner: number) => {
 		console.log(selectedClassStudents[winner]);
-		startConfetti(true);
-		startConfetti(false);
+		// startConfetti(true);
+		// startConfetti(false);
 	}
 
 	const nextStudentPage = () => {
@@ -66,10 +66,6 @@ const Main: React.FC = () => {
 
 	}, [selectedClassStudents, studentPage, classPage, classList]);
 
-	useEffect(() => {
-		console.log('data change 3');
-	}, [])
-
 	return (
 		<>
 			<div className="main-container">
@@ -84,7 +80,7 @@ const Main: React.FC = () => {
 					</div>
 					<div className="studentCards">
 						{currentPageStudents.map((selectedClassStudent: Student) => (
-							<StudentCard student={selectedClassStudent} />
+							<StudentCard student={selectedClassStudent} key={`${selectedClassStudents.courseId} ${selectedClassStudents.userId}`} />
 						))}
 					</div>
 					<div className="listControls">
@@ -103,7 +99,7 @@ const Main: React.FC = () => {
 					</div>
 					<div className="courseCards">
 						{currentPageClasses.map((course: Course) => (
-							<CourseCard course={course} />
+							<CourseCard course={course} key={course.id} />
 						))}
 					</div>
 					<div className="listControls">

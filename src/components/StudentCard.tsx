@@ -13,7 +13,7 @@ const StudentCard: React.FC<StudentProps> = ({ student }) => {
 
 	const [localStorageJSON, setLocalStorageJSON] = useContext(LocalStorageContext);
 	const [studentRemoved, setStudentRemoved] = useState(localStorageJSON[student.userId]);
-	const [nonRemoved, setNonRemoved] = useContext(NonRemovedContext);
+	const [, setNonRemoved] = useContext(NonRemovedContext);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
 
 	const addStudent = () => {
@@ -31,15 +31,13 @@ const StudentCard: React.FC<StudentProps> = ({ student }) => {
 		setLocalStorageJSON(currJSON);
 		updateJSON(localStorageJSON, student.courseId);
 		setStudentRemoved(true);
-		console.log(nonRemoved);
 		setNonRemoved(selectedClassStudents.filter(student => !localStorageJSON[student.userId]));;
-		console.log(nonRemoved);
 	}
 
 	useEffect(() => {
 		setStudentRemoved(localStorageJSON[student.userId]);
 		setNonRemoved(selectedClassStudents.filter(student => !localStorageJSON[student.userId]));
-	}, [localStorageJSON, student.userId, selectedClassStudents]);
+	}, [localStorageJSON, student.userId, selectedClassStudents, setNonRemoved]);
 
 	if(studentRemoved) {
 		return (

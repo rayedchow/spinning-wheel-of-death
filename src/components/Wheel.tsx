@@ -169,7 +169,6 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 	};
 
 	useEffect(() => {
-		console.log('hi');
 		renderWheel();
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [selectedClassStudents, nonRemoved]);
