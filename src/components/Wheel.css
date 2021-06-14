@@ -3,7 +3,7 @@
 	align-items: center;
 }
 
-.wheel-component {
+.wheelComponent {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -14,7 +14,16 @@
 	width: 31vw;
 }
 
-.wheel-component .btn {
+.wheelSettings {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	position: relative;
-	bottom: 5vh;
+	bottom: 7vh;
+}
+
+.winner {
+	margin-bottom: 2vh;
+	font-size: calc((6vh+6vw)/2);
+	color: #26DE81; 
 }

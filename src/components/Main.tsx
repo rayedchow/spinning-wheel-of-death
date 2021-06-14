@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Main.css';
-// import Confetti from 'react-dom-confetti';
+import Confetti from 'react-dom-confetti';
 import Wheel from './Wheel';
 import { ClassListContext, SelectedClassContext, SelectedClassStudentsContext, LocalStorageContext } from '../data/Store';
 import { Course, Student } from '../@types/Classroom';
@@ -10,7 +10,7 @@ import CourseCard from './CourseCard';
 
 const Main: React.FC = () => {
 
-	// const [confetti, startConfetti] = useState(false);
+	const [confetti, startConfetti] = useState(false);
 	const [studentPage, setStudentPage] = useState(0);
 	const [classPage, setClassPage] = useState(0);
 	const [currentPageStudents, setCurrentPageStudents] = useState([]);
@@ -20,10 +20,9 @@ const Main: React.FC = () => {
 	const [classList] = useContext(ClassListContext);
 	const [, setLocalStorageJSON] = useContext(LocalStorageContext);
 
-	const onFinished = (winner: number) => {
-		console.log(selectedClassStudents[winner]);
-		// startConfetti(true);
-		// startConfetti(false);
+	const onFinished = (index: number) => {
+		startConfetti(true);
+		startConfetti(false);
 	}
 
 	const nextStudentPage = () => {
@@ -109,7 +108,7 @@ const Main: React.FC = () => {
 						</div>
 					</div>
 				</div>
-				{/* <div className="confetti">
+				<div className="confetti">
 					<div id="c1">
 						<Confetti active={confetti} />
 						<Confetti active={confetti} />
@@ -122,7 +121,7 @@ const Main: React.FC = () => {
 						<Confetti active={confetti} />
 						<Confetti active={confetti} />
 					</div>
-				</div> */}
+				</div>
 			</div>
 		</>
 	);

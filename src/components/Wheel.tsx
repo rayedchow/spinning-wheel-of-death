@@ -20,7 +20,7 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 	const [top, setTop] = useState(null);
 	const [offset, setOffset] = useState(null);
 	const [, setNet] = useState(null);
-	const [, setResult] = useState(null);
+	const [result, setResult] = useState(null);
 	const [spinning, setSpinning] = useState(false);
 	const [spinCount, setSpinCount] = useState(0);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
@@ -174,7 +174,7 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 
 	return (
 			<>
-				<div className="wheel-component">
+				<div className="wheelComponent">
 					<div id="wheel">
 						<canvas
 							ref={canvasRef}
@@ -189,15 +189,24 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 							}}
 						/>
 					</div>
-					{spinning ? (
-						<button className="btn failGradient" onClick={reset}>
-							Reset
-						</button>
-					) : (
-						<button className="btn successGradient" onClick={spin}>
-							Spin
-						</button>
-					)}
+					<div className="wheelSettings">
+						{spinning ? (
+							<>
+								{nonRemoved[result] && 
+									<div className="winner">
+										Winner: {getStudentName(nonRemoved[result].profile.name.fullName)}
+									</div>
+								}
+								<button className="btn failGradient" onClick={reset}>
+									Reset
+								</button>
+							</>
+						) : (
+							<button className="btn successGradient" onClick={spin}>
+								Spin
+							</button>
+						)}
+					</div>
 				</div>
 			</>
 	);
