@@ -38,8 +38,9 @@
 	text-align: center;
 	color: #26DE81;
 	font-size: calc((8vh+8vw)/2);
-	text-overflow: ellipsis;
 	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 95%;
 }
 
 .btn {
