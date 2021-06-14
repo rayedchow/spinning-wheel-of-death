@@ -9,6 +9,8 @@ interface StudentProps {
 	student: Student
 }
 
+const iconSize = window.innerWidth*0.014;
+
 const StudentCard: React.FC<StudentProps> = ({ student }) => {
 
 	const [localStorageJSON, setLocalStorageJSON] = useContext(LocalStorageContext);
@@ -46,7 +48,7 @@ const StudentCard: React.FC<StudentProps> = ({ student }) => {
 					{getStudentName(student.profile.name.fullName)}
 				</div>
 				<div className="studentSettings">
-					<FaPlus className="studentAdd" onClick={addStudent} />
+					<FaPlus className="studentAdd studentSetting" size={Math.ceil(iconSize)} onClick={addStudent} />
 				</div>
 			</div>
 		);
@@ -58,7 +60,7 @@ const StudentCard: React.FC<StudentProps> = ({ student }) => {
 				{getStudentName(student.profile.name.fullName)}
 			</div>
 			<div className="studentSettings">
-				<FaRegTimesCircle className="studentRem" onClick={remStudent} />
+				<FaRegTimesCircle className="studentRem studentSetting" size={Math.ceil(iconSize)} onClick={remStudent} />
 			</div>
 		</div>
 	);

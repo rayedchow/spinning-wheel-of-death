@@ -36,6 +36,7 @@
 }
 
 .studentSettings {
-	margin-top: 1px;
 	cursor: pointer;
+	display: flex;
+	align-items: center;
 }
