@@ -44,6 +44,10 @@ const App: React.FC = () => {
 		}
 	}, [selectedClass]);
 
+	const onFooterClick = () => {
+		window.open('https://github.com/voomp');
+	}
+
 	return (
 		<>
 			<div id="navbar">
@@ -68,6 +72,9 @@ const App: React.FC = () => {
 			{loggedIn &&
 				<Main />
 			}
+			<footer className='credits'>
+				programmed by <span onClick={onFooterClick} className="link">rayed</span>
+			</footer>
 		</>
 	);
 }
