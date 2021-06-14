@@ -6,8 +6,8 @@
 	flex-direction: row;
 	justify-content: space-between;
 	border-radius: 8px;
-	max-width: 150px;
-	min-width: 150px;
+	max-width: 11.5vw;
+	min-width: 11.5vw;
 }
 
 .studentRemoved {
@@ -19,6 +19,8 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	font-size: calc((4.5vh+4.5vw)/2);
+	font-weight: 400;
 }
 
 .studentRemoved .studentName {

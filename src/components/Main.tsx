@@ -64,7 +64,7 @@ const Main: React.FC = () => {
 		}
 		setCurrentPageClasses(deltaCurrentPageClasses);
 
-	}, [selectedClassStudents, studentPage, classPage]);
+	}, [selectedClassStudents, studentPage, classPage, classList]);
 
 	return (
 		<>

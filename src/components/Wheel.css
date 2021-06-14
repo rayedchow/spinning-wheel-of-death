@@ -11,5 +11,10 @@
 }
 
 #wheelCanvas {
-	width: 31.25vw;
+	width: 31vw;
+}
+
+.wheel-component .btn {
+	position: relative;
+	bottom: 5vh;
 }

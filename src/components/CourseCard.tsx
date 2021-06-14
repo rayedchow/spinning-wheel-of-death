@@ -15,7 +15,7 @@ const CourseCard: React.FC<CourseProps> = ({ course }) => {
 
 	return (
 		<div 
-			className={`courseCard${(selectedClass == course) ? ' selectedCourse' : ''}`}
+			className={`courseCard${(selectedClass === course) ? ' selectedCourse' : ''}`}
 			onClick={updateSelectedClass}
 		>
 			<div className="courseName">

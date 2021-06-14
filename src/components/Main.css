@@ -15,7 +15,7 @@
 
 .wheel-container {
 	margin-left: 6vw;
-	height: 70vh;
+	height: 75vh;
 	width: 31.25vw;
 }
 
@@ -29,7 +29,6 @@
 }
 
 .studentCards {
-	max-width: 650px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -38,7 +37,7 @@
 .container-heading {
 	text-align: center;
 	color: #26DE81;
-	font-size: 28px;
+	font-size: calc((8vh+8vw)/2);
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
@@ -47,27 +46,27 @@
 	padding: 10px 45px 10px 45px;
 	color: #DFE6E9;
 	border-radius: 16px;
-	background: linear-gradient(136.19deg, #26DE81 0%, #05C46B 100%);
-	font-size: 1.5rem;
+	background: linear-gradient(140deg, #26DE81 0%, #05C46B 100%);
+	font-size: calc((6vh+6vw)/2);
 	cursor: pointer;
 	text-decoration: none;
 	border: none;
 }
 
 .successGradient {
-	background: linear-gradient(136.19deg, #26DE81 0%, #05C46B 100%);
+	background: linear-gradient(140deg, #26DE81 0%, #05C46B 100%);
 }
 
 .successGradient:hover {
-	background: linear-gradient(136.19deg, #05C46B 0%, #26DE81 100%);
+	background: linear-gradient(140deg, #05C46B 0%, #26DE81 100%);
 }
 
 .failGradient {
-	background: linear-gradient(136.19deg, #FF416C 0%, #FF4B2B 100%);
+	background: linear-gradient(140deg, #FF416C 0%, #FF4B2B 100%);
 }
 
 .failGradient:hover {
-	background: linear-gradient(136.19deg, #FF4B2B 0%, #FF416C 100%);
+	background: linear-gradient(140deg, #FF4B2B 0%, #FF416C 100%);
 }
 
 .listControls .btn {
