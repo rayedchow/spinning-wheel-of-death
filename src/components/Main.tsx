@@ -15,6 +15,8 @@ const confettiConfig: ConfettiConfig = {
 	height: `${window.innerHeight * 0.01}px`
 }
 
+const iconSize = window.innerWidth*0.015;
+
 const Main: React.FC = () => {
 
 	const [confetti, startConfetti] = useState(false);
@@ -99,8 +101,8 @@ const Main: React.FC = () => {
 							Reset
 						</button>
 						<div className="pagination">
-							<FaAngleLeft className="pagIcon" onClick={prevStudentPage} />
-							<FaAngleRight className="pagIcon" onClick={nextStudentPage} />
+							<FaAngleLeft className="pagIcon" onClick={prevStudentPage} size={iconSize} />
+							<FaAngleRight className="pagIcon" onClick={nextStudentPage} size={iconSize} />
 						</div>
 					</div>
 				</div>
@@ -115,8 +117,8 @@ const Main: React.FC = () => {
 					</div>
 					<div className="listControls">
 						<div className="pagination">
-							<FaAngleLeft className="pagIcon" onClick={prevClassPage} />
-							<FaAngleRight className="pagIcon" onClick={nextClassPage} />
+							<FaAngleLeft className="pagIcon" onClick={prevClassPage} size={iconSize} />
+							<FaAngleRight className="pagIcon" onClick={nextClassPage} size={iconSize} />
 						</div>
 					</div>
 				</div>

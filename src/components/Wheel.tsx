@@ -126,13 +126,13 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 		let randomSpin = Math.floor(Math.random() * 1000) + 1500;
 
 		setRotate(randomSpin);
-		setEaseOut(4);
+		setEaseOut(5);
 		setSpinning(true);
   
 		// calcalute result after wheel stops spinning
 		setTimeout(() => {
 			getResult(randomSpin);
-		}, 4000);
+		}, 5000);
 	};
   
 	const getResult = spin => {
