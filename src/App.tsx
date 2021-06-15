@@ -72,7 +72,7 @@ const App: React.FC = () => {
 			{loggedIn &&
 				<Main />
 			}
-			<footer className='credits'>
+			<footer className='creditsFooter'>
 				programmed by <span onClick={onFooterClick} className="link">rayed</span>
 			</footer>
 		</>
