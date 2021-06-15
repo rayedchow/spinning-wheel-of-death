@@ -35,7 +35,7 @@ const Main: React.FC = () => {
 	}
 
 	const nextStudentPage = () => {
-		if(studentPage < Math.ceil(selectedClassStudents/12)) setStudentPage(studentPage+1);
+		if(studentPage < Math.ceil(selectedClassStudents.length/12)) setStudentPage(studentPage+1);
 	}
 
 	const prevStudentPage = () => {
@@ -62,7 +62,7 @@ const Main: React.FC = () => {
 			const deltaCurrentPageStudents = [];
 			let studentIndex = studentPage*12;
 
-			while(studentIndex < (studentPage+1*12)) {
+			while(studentIndex < ((studentPage+1)*12)) {
 				if(selectedClassStudents[studentIndex]) deltaCurrentPageStudents.push(selectedClassStudents[studentIndex]);
 				studentIndex++;
 			}
@@ -74,15 +74,12 @@ const Main: React.FC = () => {
 		if(classPage < maxClassPages) {
 			const deltaCurrentPageClasses = [];
 			let classIndex = classPage*8;
-			console.log(classIndex);
-			console.log((classPage+1*8));
 
 			while(classIndex < ((classPage+1)*8)) {
 				if(classList[classIndex]) deltaCurrentPageClasses.push(classList[classIndex]);
 				classIndex++;
 			}
 
-			console.log(deltaCurrentPageClasses);
 			setCurrentPageClasses(deltaCurrentPageClasses);
 		}
 
