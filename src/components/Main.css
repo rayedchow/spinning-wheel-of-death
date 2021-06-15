@@ -94,6 +94,7 @@
 }
 
 .class-container {
+	justify-content: space-evenly;
 	width: 30vw;
 }
 
