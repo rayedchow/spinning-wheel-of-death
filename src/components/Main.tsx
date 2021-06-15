@@ -15,7 +15,7 @@ const confettiConfig: ConfettiConfig = {
 	height: `${window.innerHeight * 0.01}px`
 }
 
-const iconSize = window.innerWidth*0.015;
+const iconSize = window.innerWidth*0.028;
 
 const Main: React.FC = () => {
 
@@ -35,7 +35,7 @@ const Main: React.FC = () => {
 	}
 
 	const nextStudentPage = () => {
-		if(selectedClassStudents.length-((studentPage+1)*12) > 0) setStudentPage(studentPage+1);
+		if(studentPage < Math.ceil(selectedClassStudents/12)) setStudentPage(studentPage+1);
 	}
 
 	const prevStudentPage = () => {
@@ -43,7 +43,7 @@ const Main: React.FC = () => {
 	}
 
 	const nextClassPage = () => {
-		if(classList.length-((classPage+1)*8) > 0) setClassPage(classPage+1);
+		if(classPage < Math.ceil(classList.length/8)) setClassPage(classPage+1);
 	}
 
 	const prevClassPage = () => {
@@ -56,21 +56,35 @@ const Main: React.FC = () => {
 	}
 
 	useEffect(() => {
-		const deltaCurrentPageStudents = [];
-		let studentIndex = studentPage*12;
-		while(studentIndex < ((selectedClassStudents.length-(studentPage*12) > 12) ? 12 : selectedClassStudents.length-(studentPage*12) % 12)) {
-			deltaCurrentPageStudents.push(selectedClassStudents[studentIndex]);
-			studentIndex++;
-		}
-		setCurrentPageStudents(deltaCurrentPageStudents);
+		
+		const maxStudentPages = Math.ceil(selectedClassStudents.length/12);
+		if(studentPage < maxStudentPages) {
+			const deltaCurrentPageStudents = [];
+			let studentIndex = studentPage*12;
 
-		const deltaCurrentPageClasses = [];
-		let classIndex = classPage*8;
-		while(classIndex < ((classList.length-(classPage*8) > 8) ? 8 : classList.length-(classPage*8) % 8)) {
-			deltaCurrentPageClasses.push(classList[classIndex]);
-			classIndex++;
+			while(studentIndex < (studentPage+1*12)) {
+				if(selectedClassStudents[studentIndex]) deltaCurrentPageStudents.push(selectedClassStudents[studentIndex]);
+				studentIndex++;
+			}
+
+			setCurrentPageStudents(deltaCurrentPageStudents);
 		}
-		setCurrentPageClasses(deltaCurrentPageClasses);
+
+		const maxClassPages = Math.ceil(classList.length/8);
+		if(classPage < maxClassPages) {
+			const deltaCurrentPageClasses = [];
+			let classIndex = classPage*8;
+			console.log(classIndex);
+			console.log((classPage+1*8));
+
+			while(classIndex < ((classPage+1)*8)) {
+				if(classList[classIndex]) deltaCurrentPageClasses.push(classList[classIndex]);
+				classIndex++;
+			}
+
+			console.log(deltaCurrentPageClasses);
+			setCurrentPageClasses(deltaCurrentPageClasses);
+		}
 
 	}, [selectedClassStudents, studentPage, classPage, classList]);
 
