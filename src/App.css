@@ -20,7 +20,7 @@
 	font-weight: 400;
 	cursor: pointer;
 	margin-left: 6vw;
-	font-size: calc((10vh+10vw)/2);
+	font-size: 3vw;
 }
 
 .loginContainer {
@@ -37,7 +37,7 @@
 	background-position: 0% 0%;
 	position: fixed;
 	bottom: 0pt;
-	font-size: 2.5vh;
+	font-size: 1.8vw;
 	background-color: #26DE81;
 	color: #222F3E;
 	border-top-right-radius: 6px;

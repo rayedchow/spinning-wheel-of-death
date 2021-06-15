@@ -14,7 +14,7 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	font-size: calc((4.5vh+4.5vw)/2);
+	font-size: 1.3vw;
 	font-weight: 400;
 }
 

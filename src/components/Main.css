@@ -37,7 +37,7 @@
 .container-heading {
 	text-align: center;
 	color: #26DE81;
-	font-size: calc((8vh+8vw)/2);
+	font-size: 2.5vw;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	max-width: 95%;
@@ -48,7 +48,7 @@
 	color: #DFE6E9;
 	border-radius: 16px;
 	background: linear-gradient(140deg, #26DE81 0%, #05C46B 100%);
-	font-size: calc((6vh+6vw)/2);
+	font-size: 1.7vw;
 	cursor: pointer;
 	text-decoration: none;
 	border: none;
