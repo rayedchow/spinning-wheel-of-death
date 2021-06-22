@@ -11,7 +11,7 @@ const Authentication: React.FC = () => {
 				Must be a Teacher
 			</div>
 			<div className="studentAuthDesc">
-				You should be a teacher for at least one of your google classrooms  to be able to use this application. This application is made for teachers to view their classes and manage their students. Try refreshing and signing in with a teacher google account.
+				You should be a teacher for at least one of your google classrooms  to be able to use this application. This application is made for teachers to view their classes and manage their students. Try refreshing or logging out and signing in with a teacher google account.
 			</div>
 		</div>
 	)

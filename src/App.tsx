@@ -66,12 +66,22 @@ const App: React.FC = () => {
 		window.open('https://github.com/voomp');
 	}
 
+	const onLogoutClick = () => {
+		localStorage.setItem('auth', 'true');
+		window.location.reload();
+	}
+
 	return (
 		<>
 			<div id="navbar">
 				<div className="logo">
 					spinningwheelofdeath
 				</div>
+				{loggedIn &&
+					<div className="logout" onClick={onLogoutClick}>
+						logout
+					</div>
+				}
 			</div>
 			{!loggedIn &&
 				<div className="loginContainer">
