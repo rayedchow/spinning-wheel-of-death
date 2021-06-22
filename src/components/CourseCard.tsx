@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Course } from '../@types/Classroom';
 import { SelectedClassContext } from '../data/Store';
-import './CourseCard.css';
+import '../styles/CourseCard.css';
 
 interface CourseProps {
 	course: Course

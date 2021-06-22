@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import './Wheel.css';
+import '../styles/Wheel.css';
 import colorData from '../data/colorData.json';
 import { LocalStorageContext, NonRemovedContext, SelectedClassStudentsContext } from '../data/Store';
 import { getStudentName, updateJSON } from '../data/GoogleAPI';

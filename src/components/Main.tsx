@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './Main.css';
+import '../styles/Main.css';
 import Confetti, { ConfettiConfig } from 'react-dom-confetti';
 import Wheel from './Wheel';
 import { ClassListContext, LocalStorageContext, SelectedClassContext, SelectedClassStudentsContext } from '../data/Store';

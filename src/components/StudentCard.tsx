@@ -3,7 +3,7 @@ import { FaRegTimesCircle, FaPlus } from 'react-icons/fa';
 import { Student } from '../@types/Classroom';
 import { getStudentName, updateJSON } from '../data/GoogleAPI';
 import { LocalStorageContext, NonRemovedContext, SelectedClassStudentsContext } from '../data/Store';
-import './StudentCard.css';
+import '../styles/StudentCard.css';
 
 interface StudentProps {
 	student: Student

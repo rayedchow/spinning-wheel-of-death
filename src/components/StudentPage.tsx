@@ -1,5 +1,5 @@
 import React from 'react';
-import './StudentPage.css';
+import '../styles/StudentPage.css';
 
 const Authentication: React.FC = () => {
 

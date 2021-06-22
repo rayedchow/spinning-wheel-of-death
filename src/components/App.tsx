@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
-import './App.css';
-import Main from './components/Main';
+import '../styles/App.css';
+import Main from './Main';
 import GoogleLogin from 'react-google-login';
-import { getClassList, getStudentList, updateJSON, isUserAuthenticated } from './data/GoogleAPI';
-import { ClassListContext, LocalStorageContext, SelectedClassContext, SelectedClassStudentsContext } from './data/Store';
-import clientIDJSON from './data/clientID.json';
-import Authentication from './components/Authentication';
-import StudentPage from './components/StudentPage';
+import { getClassList, getStudentList, updateJSON, isUserAuthenticated } from '../data/GoogleAPI';
+import { ClassListContext, LocalStorageContext, SelectedClassContext, SelectedClassStudentsContext } from '../data/Store';
+import clientIDJSON from '../data/clientID.json';
+import Authentication from './Authentication';
+import StudentPage from './StudentPage';
 
 const clientID = clientIDJSON.clientID;
 
