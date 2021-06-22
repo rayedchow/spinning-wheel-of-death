@@ -21,13 +21,15 @@ const App: React.FC = () => {
 	const onGoogleSuccess = async (res) => {
 		console.log(res);
 
-		isUserAuthenticated(res.profileObj.email, async (authenticated) => {
-			if(!authenticated) {
-				setEmail(res.profileObj.email);
-			} else {
-				localStorage.removeItem('auth');
-			}
-		});
+		if(!res.profileObj.email.includes('@bellevilleschools.org')) {
+			isUserAuthenticated(res.profileObj.email, async (authenticated) => {
+				if(!authenticated) {
+					setEmail(res.profileObj.email);
+				} else {
+					localStorage.removeItem('auth');
+				}
+			});
+		}
 
 		const accessToken = res.tokenObj.access_token;
 
@@ -73,7 +75,7 @@ const App: React.FC = () => {
 						onSuccess={onGoogleSuccess}
 						cookiePolicy="single_host_origin"
 						scope="openid https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.rosters.readonly"
-						isSignedIn={(localStorage.getItem("auth") === null)}
+						isSignedIn={(localStorage.getItem('auth') === null)}
 						className="loginEmbed"
 					/>
 				</div>
