@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import './App.css';
 import Main from './components/Main';
 import GoogleLogin from 'react-google-login';
-import { getClassList, getStudentList, updateJSON } from './data/GoogleAPI';
+import { getClassList, getStudentList, updateJSON, isUserAuthenticated } from './data/GoogleAPI';
 import { ClassListContext, LocalStorageContext, SelectedClassContext, SelectedClassStudentsContext } from './data/Store';
 import clientIDJSON from './data/clientID.json';
+import Authentication from './components/Authentication';
 
 const clientID = clientIDJSON.clientID;
 
@@ -15,9 +16,18 @@ const App: React.FC = () => {
 	const [, setClassList] = useContext(ClassListContext);
 	const [localStorageJSON, setLocalStorageJSON] = useContext(LocalStorageContext);
 	const [loggedIn, boolLoggedIn] = useState(null);
+	const [email, setEmail] = useState('');
 
 	const onGoogleSuccess = async (res) => {
 		console.log(res);
+
+		isUserAuthenticated(res.profileObj.email, async (authenticated) => {
+			if(!authenticated) {
+				setEmail(res.profileObj.email);
+			} else {
+				localStorage.removeItem('auth');
+			}
+		});
 
 		const accessToken = res.tokenObj.access_token;
 
@@ -63,15 +73,20 @@ const App: React.FC = () => {
 						onSuccess={onGoogleSuccess}
 						cookiePolicy="single_host_origin"
 						scope="openid https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.rosters.readonly"
-						isSignedIn={true}
+						isSignedIn={(localStorage.getItem("auth") === null)}
 						className="loginEmbed"
 					/>
 				</div>
 			}
 			
-			{loggedIn &&
+			{(loggedIn && !email) &&
 				<Main />
 			}
+
+			{email &&
+				<Authentication email={email} />
+			}
+
 			<footer className='creditsFooter'>
 				programmed by <span onClick={onFooterClick} className="link">rayed</span>
 			</footer>
