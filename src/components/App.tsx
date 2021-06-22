@@ -78,7 +78,7 @@ const App: React.FC = () => {
 					spinningwheelofdeath
 				</div>
 				{loggedIn &&
-					<div className="logout" onClick={onLogoutClick}>
+					<div className="logout link" onClick={onLogoutClick}>
 						logout
 					</div>
 				}
