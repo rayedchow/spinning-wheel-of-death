@@ -2,13 +2,25 @@ import axios from 'axios';
 import { Course, Student } from '../@types/Classroom';
 import clientIDJSON from './clientID.json';
 
-export const getClassList = async (token: string, callback: (courseList: Course[]) => void) => {
+export const getClassList = async (token: string, studentId: string, callback: (courseList: Course[], studentError?: boolean) => void) => {
 	axios.get('https://classroom.googleapis.com/v1/courses?courseStates=ACTIVE', {
 		headers: {
 			Authorization: `Bearer ${token}`
 		}
-	}).then(courseListData => {
-		callback(courseListData.data.courses);
+	}).then(async (courseListData) => {
+		let studentCourses = 0;
+		let i = 0;
+		await courseListData.data.courses.forEach(async (course: Course) => {
+			getStudentList(course.id, token, async (studentList) => {
+				if(studentList[0].userId === studentId) studentCourses++;
+				i++;
+				if(studentCourses >= courseListData.data.courses.length) callback(courseListData.data.courses, true);
+				else if(i === courseListData.data.courses.length) {
+					callback(courseListData.data.courses);
+				}
+				console.log(studentCourses);
+			});
+		});
 	});
 }
 

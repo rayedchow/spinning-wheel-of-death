@@ -1,0 +1,23 @@
+.studentPage {
+	height: 90vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-weight: 400;
+}
+
+.studentAuthHeading {
+	font-size: 3vw;
+	color: #26DE81;
+	margin-bottom: 4vh;
+	font-weight: 400;
+}
+
+.studentAuthDesc {
+	font-size: 1.25vw;
+	font-weight: 400;
+	color: #DFE6E9;
+	text-align: center;
+	max-width: 50%;
+}

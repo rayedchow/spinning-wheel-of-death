@@ -6,6 +6,7 @@ import { getClassList, getStudentList, updateJSON, isUserAuthenticated } from '.
 import { ClassListContext, LocalStorageContext, SelectedClassContext, SelectedClassStudentsContext } from './data/Store';
 import clientIDJSON from './data/clientID.json';
 import Authentication from './components/Authentication';
+import StudentPage from './components/StudentPage';
 
 const clientID = clientIDJSON.clientID;
 
@@ -17,6 +18,7 @@ const App: React.FC = () => {
 	const [localStorageJSON, setLocalStorageJSON] = useContext(LocalStorageContext);
 	const [loggedIn, boolLoggedIn] = useState(null);
 	const [email, setEmail] = useState('');
+	const [isUserStudent, setStudentBool] = useState(false);
 
 	const onGoogleSuccess = async (res) => {
 		console.log(res);
@@ -33,9 +35,13 @@ const App: React.FC = () => {
 
 		const accessToken = res.tokenObj.access_token;
 
-		getClassList(accessToken, async (classListData) => {
-			if(classListData[0]) setSelectedClass(classListData[0]);
-			setClassList(classListData);
+		getClassList(accessToken, res.profileObj.googleId, async (classListData, err) => {
+			if(err) setStudentBool(true);
+			else {
+				if(classListData[0]) setSelectedClass(classListData[0]);
+				setClassList(classListData);
+			}
+			
 		});
 
 		boolLoggedIn(res.tokenObj.access_token);
@@ -82,7 +88,13 @@ const App: React.FC = () => {
 			}
 			
 			{(loggedIn && !email) &&
-				<Main />
+				<>
+					{isUserStudent ? (
+						<StudentPage />
+					) : (
+						<Main />
+					)}
+				</>
 			}
 
 			{email &&
