@@ -1,0 +1,6 @@
+{
+	"clientID": "717911125774-rbrs3pfng8hneidklh2ajs1b017u73dq.apps.googleusercontent.com",
+	"prod_apiURL": "https://spinningwheelofdeathapi.herokuapp.com",
+	"test_apiURL": "http://localhost:8000",
+	"apiURL": "https://spinningwheelofdeathapi.herokuapp.com"
+}
