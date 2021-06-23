@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import '../styles/App.css';
 import Main from './Main';
 import GoogleLogin from 'react-google-login';
-import { getClassList, getStudentList, updateJSON, isUserAuthenticated } from '../data/GoogleAPI';
-import { ClassListContext, LocalStorageContext, SelectedClassContext, SelectedClassStudentsContext } from '../data/Store';
+import { getClassList, getStudentList, getUserData, isUserAuthenticated } from '../data/GoogleAPI';
+import { ClassListContext, UserDataContext, SelectedClassContext, SelectedClassStudentsContext, EmailDataContext } from '../data/Store';
 import clientIDJSON from '../data/clientID.json';
 import Authentication from './Authentication';
 import StudentPage from './StudentPage';
@@ -15,7 +15,8 @@ const App: React.FC = () => {
 	const [selectedClass, setSelectedClass] = useContext(SelectedClassContext);
 	const [, setSelectedClassStudents] = useContext(SelectedClassStudentsContext);
 	const [, setClassList] = useContext(ClassListContext);
-	const [localStorageJSON, setLocalStorageJSON] = useContext(LocalStorageContext);
+	const [, setUserData] = useContext(UserDataContext);
+	const [, setEmailData] = useContext(EmailDataContext);
 	const [loggedIn, boolLoggedIn] = useState(null);
 	const [email, setEmail] = useState('');
 	const [isUserStudent, setStudentBool] = useState(false);
@@ -28,12 +29,17 @@ const App: React.FC = () => {
 				if(!authenticated) {
 					setEmail(res.profileObj.email);
 				} else {
-					localStorage.removeItem('auth');
+					localStorage.clear();
 				}
 			});
 		}
 
 		const accessToken = res.tokenObj.access_token;
+
+		getUserData(res.profileObj.email, async (resUserData) => {
+			setUserData(resUserData);
+		});
+		setEmailData(res.profileObj.email);
 
 		getClassList(accessToken, res.profileObj.googleId, async (classListData, err) => {
 			if(err) setStudentBool(true);
@@ -41,7 +47,6 @@ const App: React.FC = () => {
 				if(classListData[0]) setSelectedClass(classListData[0]);
 				setClassList(classListData);
 			}
-			
 		});
 
 		boolLoggedIn(res.tokenObj.access_token);
@@ -52,13 +57,6 @@ const App: React.FC = () => {
 			getStudentList(selectedClass.id, loggedIn, async (studentListData) => {
 				setSelectedClassStudents(studentListData);
 			});
-
-			if(!localStorage.getItem(selectedClass.id)) {
-				setLocalStorageJSON({});
-				updateJSON(localStorageJSON, selectedClass.id);
-			} else {
-				setLocalStorageJSON(JSON.parse(localStorage.getItem(selectedClass.id)));
-			}
 		}
 	}, [selectedClass]);
 

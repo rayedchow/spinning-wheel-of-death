@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import '../styles/Wheel.css';
 import colorData from '../data/colorData.json';
-import { LocalStorageContext, NonRemovedContext, SelectedClassStudentsContext } from '../data/Store';
-import { getStudentName, updateJSON } from '../data/GoogleAPI';
+import { EmailDataContext, SelectedClassContext, SelectedClassStudentsContext, UserDataContext } from '../data/Store';
+import { getStudentName, remStudentData } from '../data/GoogleAPI';
+import { Student } from '../@types/Classroom';
 
 interface wheelProps {
 	onFinished: (winningItem: number) => void
@@ -24,8 +25,26 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 	const [spinning, setSpinning] = useState(false);
 	const [spinCount, setSpinCount] = useState(0);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
-	const [nonRemoved, setNonRemoved] = useContext(NonRemovedContext);
-	const [localStorageJSON, setLocalStorageJSON] = useContext(LocalStorageContext);
+	const [userData, setUserData] = useContext(UserDataContext);
+	const [selectedClass] = useContext(SelectedClassContext);
+	const [emailData] = useContext(EmailDataContext);
+
+	let classIndex = -1;
+	let nonRemoved: Student[] = [];
+	if(userData.classData) {
+		classIndex = userData.classData.findIndex((classObj) => 
+			classObj.classId === selectedClass.id
+		);
+
+		if(classIndex > -1) {
+			nonRemoved = selectedClassStudents.filter(student => 
+				(userData.classData[classIndex].removedStudents.indexOf(student.userId) === -1)
+			);
+		} else {
+			nonRemoved = selectedClassStudents;
+		}
+		
+	}
 
 	while(nonRemoved.length > colors.length) {
 		colors.push(colorData[Math.floor(Math.random() * colorData.length)]);
@@ -162,11 +181,8 @@ const Wheel: React.FC<wheelProps> = ({ onFinished }) => {
 	};
 
 	const reset = () => {
-		let currJSON = localStorageJSON;
-		currJSON[nonRemoved[result].userId] = true;
-		setLocalStorageJSON(currJSON);
-		updateJSON(localStorageJSON, nonRemoved[result].courseId);
-		setNonRemoved(selectedClassStudents.filter(student => !localStorageJSON[student.userId]));
+
+		remStudentData(emailData, nonRemoved[result].courseId, nonRemoved[result].userId, async (data) => setUserData(data));
 
 		// reset wheel and result
 		setRotate(0);

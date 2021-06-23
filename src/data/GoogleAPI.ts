@@ -18,7 +18,6 @@ export const getClassList = async (token: string, studentId: string, callback: (
 				else if(i === courseListData.data.courses.length) {
 					callback(courseListData.data.courses);
 				}
-				console.log(studentCourses);
 			});
 		});
 	});
@@ -34,10 +33,6 @@ export const getStudentList = async (classId: string, token: string, callback: (
 	});
 }
 
-export const updateJSON = (localStorageJSON: Object, key: string) => {
-	localStorage.setItem(key, JSON.stringify(localStorageJSON));
-}
-
 export const getStudentName = (fullName: string): string => {
 	const splitName = fullName.split(' ');
 	const studentName = (splitName.length > 1) ? `${splitName[0]} ${splitName[1].substr(0, 1)}` : fullName;
@@ -45,7 +40,7 @@ export const getStudentName = (fullName: string): string => {
 	return studentName;
 }
 
-export const getUserData = (email: string) => {
+export const getUserData = (email: string, callback: (userData: Object) => void) => {
 	axios({
 		method: 'POST',
 		url: `${clientIDJSON.apiURL}/data/getData`,
@@ -53,7 +48,49 @@ export const getUserData = (email: string) => {
 			email
 		}
 	}).then(requestData => {
-		console.log(requestData.data);
+		console.log(requestData);
+		callback(requestData.data);
+	});
+}
+
+export const resetStudentData = (email: string, classID: string, callback: (userData: Object) => void) => {
+	axios({
+		method: 'POST',
+		url: `${clientIDJSON.apiURL}/data/resetStudents`,
+		data: {
+			email,
+			classID
+		}
+	}).then(requestData => {
+		callback(requestData.data);
+	});
+}
+
+export const addStudentData = (email: string, classId: string, studentId: string, callback: (userData: Object) => void) => {
+	axios({
+		method: 'POST',
+		url: `${clientIDJSON.apiURL}/data/addStudent`,
+		data: {
+			email,
+			classId,
+			studentId
+		}
+	}).then(requestData => {
+		callback(requestData.data);
+	});
+}
+
+export const remStudentData = (email: string, classId: string, studentId: string, callback: (userData: Object) => void) => {
+	axios({
+		method: 'POST',
+		url: `${clientIDJSON.apiURL}/data/removeStudent`,
+		data: {
+			email,
+			classId,
+			studentId
+		}
+	}).then(requestData => {
+		callback(requestData.data);
 	});
 }
 

@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import '../styles/Main.css';
 import Confetti, { ConfettiConfig } from 'react-dom-confetti';
 import Wheel from './Wheel';
-import { ClassListContext, LocalStorageContext, SelectedClassContext, SelectedClassStudentsContext } from '../data/Store';
+import { ClassListContext, UserDataContext, SelectedClassContext, SelectedClassStudentsContext, EmailDataContext } from '../data/Store';
 import { Course, Student } from '../@types/Classroom';
 import StudentCard from './StudentCard';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import CourseCard from './CourseCard';
+import { resetStudentData } from '../data/GoogleAPI';
 
 const confettiConfig: ConfettiConfig = {
 	spread: 360,
@@ -27,7 +28,8 @@ const Main: React.FC = () => {
 	const [selectedClass] = useContext(SelectedClassContext);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
 	const [classList] = useContext(ClassListContext);
-	const [, setLocalStorageJSON] = useContext(LocalStorageContext);
+	const [, setUserData] = useContext(UserDataContext);
+	const [emailData] = useContext(EmailDataContext);
 
 	const onFinished = (index: number) => {
 		startConfetti(true);
@@ -51,8 +53,7 @@ const Main: React.FC = () => {
 	}
 
 	const resetStudents = () => {
-		setLocalStorageJSON({});
-		localStorage.setItem(selectedClass.id, '{}');
+		resetStudentData(emailData, selectedClass.id, async (data) => setUserData(data));
 	}
 
 	useEffect(() => {
@@ -104,7 +105,7 @@ const Main: React.FC = () => {
 					</div>
 					<div className="studentCards">
 						{currentPageStudents.map((selectedClassStudent: Student) => (
-							<StudentCard student={selectedClassStudent} key={`${selectedClassStudents.courseId} ${selectedClassStudents.userId}`} />
+							<StudentCard student={selectedClassStudent} key={`${selectedClassStudent.courseId} ${selectedClassStudent.userId}`} />
 						))}
 					</div>
 					<div className="listControls">

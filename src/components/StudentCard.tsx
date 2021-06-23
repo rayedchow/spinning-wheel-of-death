@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FaRegTimesCircle, FaPlus } from 'react-icons/fa';
 import { Student } from '../@types/Classroom';
-import { getStudentName, updateJSON } from '../data/GoogleAPI';
-import { LocalStorageContext, NonRemovedContext, SelectedClassStudentsContext } from '../data/Store';
+import { addStudentData, getStudentName, remStudentData } from '../data/GoogleAPI';
+import { EmailDataContext, SelectedClassStudentsContext, UserDataContext } from '../data/Store';
 import '../styles/StudentCard.css';
 
 interface StudentProps {
@@ -13,37 +13,32 @@ const iconSize = window.innerWidth*0.014;
 
 const StudentCard: React.FC<StudentProps> = ({ student }) => {
 
-	const [localStorageJSON, setLocalStorageJSON] = useContext(LocalStorageContext);
-	const [studentRemoved, setStudentRemoved] = useState(localStorageJSON[student.userId]);
-	const [nonRemoved, setNonRemoved] = useContext(NonRemovedContext);
+	const [userData, setUserData] = useContext(UserDataContext);
 	const [selectedClassStudents] = useContext(SelectedClassStudentsContext);
+	const [emailData] = useContext(EmailDataContext);
+
+	const classIndex = userData.classData.findIndex((classObj) => 
+		classObj.classId === student.courseId
+	);
+
+	const [studentRemoved, setStudentRemoved] = useState(false);
 
 	const addStudent = () => {
-		let currJSON = localStorageJSON;
-		delete currJSON[student.userId];
-		setLocalStorageJSON(currJSON);
-		updateJSON(localStorageJSON, student.courseId);
-		setStudentRemoved(false);
-		setNonRemoved(selectedClassStudents.filter(student => !localStorageJSON[student.userId]));
+		addStudentData(emailData, student.courseId, student.userId, async (data) => setUserData(data));
 	}
 
 	const remStudent = () => {
-		let currJSON = localStorageJSON;
-		currJSON[student.userId] = true;
-		setLocalStorageJSON(currJSON);
-		updateJSON(localStorageJSON, student.courseId);
-		setStudentRemoved(true);
-		setNonRemoved(selectedClassStudents.filter(student => !localStorageJSON[student.userId]));
+		remStudentData(emailData, student.courseId, student.userId, async (data) => setUserData(data));
 	}
 
 	useEffect(() => {
-		setStudentRemoved(localStorageJSON[student.userId]);
-		setNonRemoved(selectedClassStudents.filter(student => !localStorageJSON[student.userId]));
-	}, [localStorageJSON, student.userId, selectedClassStudents, setNonRemoved]);
-
-	useEffect(() => {
-		setStudentRemoved(localStorageJSON[student.userId]);
-	}, [nonRemoved])
+		if(classIndex === -1) {
+			setStudentRemoved(false);
+		} else {
+			setStudentRemoved((userData.classData[classIndex].removedStudents.indexOf(student.userId) > -1));
+		}
+		
+	}, [userData, student.userId, selectedClassStudents]);
 
 	if(studentRemoved) {
 		return (
