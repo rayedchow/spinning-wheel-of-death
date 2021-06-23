@@ -24,30 +24,30 @@ const App: React.FC = () => {
 	const onGoogleSuccess = async (res) => {
 		console.log(res);
 
-		if(!res.profileObj.email.includes('@bellevilleschools.org')) {
-			isUserAuthenticated(res.profileObj.email, async (authenticated) => {
-				if(!authenticated) {
-					setEmail(res.profileObj.email);
-				} else {
-					localStorage.clear();
+		await isUserAuthenticated(res.profileObj.email, async (authenticated) => {
+			if(!authenticated && !res.profileObj.email.includes('@bellevilleschools.org')) {
+				return setEmail(res.profileObj.email);
+			} else {
+				localStorage.clear();
+				const accessToken = res.tokenObj.access_token;
+				
+				getClassList(accessToken, res.profileObj.googleId, async (classListData, err) => {
+					if(err) return setStudentBool(true);
+					else {
+						if(classListData[0]) setSelectedClass(classListData[0]);
+						setClassList(classListData);
+						
+						getUserData(res.profileObj.email, async (resUserData) => {
+							setUserData(resUserData);
+						});
+						setEmailData(res.profileObj.email);
+					}
+				});
 
-					const accessToken = res.tokenObj.access_token;
+			}
+		});
 
-					getUserData(res.profileObj.email, async (resUserData) => {
-						setUserData(resUserData);
-					});
-					setEmailData(res.profileObj.email);
-
-					getClassList(accessToken, res.profileObj.googleId, async (classListData, err) => {
-						if(err) setStudentBool(true);
-						else {
-							if(classListData[0]) setSelectedClass(classListData[0]);
-							setClassList(classListData);
-						}
-					});
-				}
-			});
-		}
+		
 
 		boolLoggedIn(res.tokenObj.access_token);
 	}
