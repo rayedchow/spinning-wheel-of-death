@@ -53,13 +53,13 @@ export const getUserData = (email: string, callback: (userData: Object) => void)
 	});
 }
 
-export const resetStudentData = (email: string, classID: string, callback: (userData: Object) => void) => {
+export const resetStudentData = (email: string, classId: string, callback: (userData: Object) => void) => {
 	axios({
 		method: 'POST',
 		url: `${clientIDJSON.apiURL}/data/resetStudents`,
 		data: {
 			email,
-			classID
+			classId
 		}
 	}).then(requestData => {
 		callback(requestData.data);
