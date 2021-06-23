@@ -30,23 +30,21 @@ const App: React.FC = () => {
 					setEmail(res.profileObj.email);
 				} else {
 					localStorage.clear();
-				}
-			});
-		}
 
-		if(!email) {
-			const accessToken = res.tokenObj.access_token;
+					const accessToken = res.tokenObj.access_token;
 
-			getUserData(res.profileObj.email, async (resUserData) => {
-				setUserData(resUserData);
-			});
-			setEmailData(res.profileObj.email);
+					getUserData(res.profileObj.email, async (resUserData) => {
+						setUserData(resUserData);
+					});
+					setEmailData(res.profileObj.email);
 
-			getClassList(accessToken, res.profileObj.googleId, async (classListData, err) => {
-				if(err) setStudentBool(true);
-				else {
-					if(classListData[0]) setSelectedClass(classListData[0]);
-					setClassList(classListData);
+					getClassList(accessToken, res.profileObj.googleId, async (classListData, err) => {
+						if(err) setStudentBool(true);
+						else {
+							if(classListData[0]) setSelectedClass(classListData[0]);
+							setClassList(classListData);
+						}
+					});
 				}
 			});
 		}
